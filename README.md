@@ -12,15 +12,10 @@ Add the Service Provider to the `'providers'` array in `config/app.php`
 NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,
 ```
   
-If you haven't done so already activate authentication with either  
-```php artisan make:auth```
-or adding this to `app/routes.php`  
-```php
-Route::group(['middleware' => ['web']], function () {
-    Route::auth();
-});
-```
-Add the following to `app/Http/Controllers/Auth/AuthController`
+If you haven't done so already activate authentication with this in Laravel 5.2  
+`php artisan make:auth`  
+  
+Add the following to `app/Http/Controllers/Auth/AuthController.php`
 ```php
 /**
  * Custom larapages login form
