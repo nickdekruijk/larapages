@@ -7,7 +7,13 @@ To install package use<br>
 or<br>
 <code>composer require nickdekruijk/larapages:dev-master</code><br>
 <br>
-Add the Service Provider to the 'providers' array in laravel/config/app.php<br>
+Add the Service Provider to the 'providers' array in config/app.php<br>
 <code>NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,</code><br>
 <br>
-
+If you haven't done so already activate authentication with either<br>
+<code>php artisan make:auth</code><br>
+or adding this to app/routes.php<br>
+<code>Route::group(['middleware' => ['web']], function () {<br>
+    Route::auth();<br>
+});<br>
+<code>
