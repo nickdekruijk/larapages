@@ -1,7 +1,13 @@
 {
     "name": "nickdekruijk/larapages",
-    "description": "A simple CMS build on Laravel 5.2",
+    "version": "0.1.0",
+    "description": "A simple CMS build on Laravel 5",
     "license": "MIT",
+	"keywords": [
+		"cms",
+		"laravel"
+	],
+	"homepage": "http://www.larapages.nl",
     "authors": [
         {
             "name": "Nick de Kruijk",
