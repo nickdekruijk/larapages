@@ -16,4 +16,4 @@ or adding this to app/routes.php<br>
 <code>Route::group(['middleware' => ['web']], function () {<br>
     Route::auth();<br>
 });<br>
-<code>
+</code>
