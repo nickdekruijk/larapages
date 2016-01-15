@@ -20,9 +20,11 @@
 		@endforeach
 	</ul>
 @endif
-
-<input class="{{ $errors->has('email')?'error':'' }}" placeholder="E-mail" autofocus="autofocus" name="email" type="email">
-<input class="{{ $errors->has('password')?'error':'' }}" placeholder="Password" name="password" type="password" value="">
+<?php
+    dd(Session::flash())
+?>
+<input class="{{ $errors->has('email')?'error':'' }}"    placeholder="E-mail"   value="" name="email" type="email" autofocus="autofocus" >
+<input class="{{ $errors->has('password')?'error':'' }}" placeholder="Password" value="" name="password" type="password">
 <label for="remember_me">Remember me</label><input type="checkbox" name="remember" id="remember_me">
 <input type="submit" value="Login">
 

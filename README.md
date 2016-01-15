@@ -14,6 +14,8 @@ Add the Service Provider to the `'providers'` array in `config/app.php`
 NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,
 ```
   
+Make sure you have either Illuminate\Html or Collective\Html properly configured, see https://laravelcollective.com/docs/5.1/html for details  
+
 If you haven't done so already activate authentication with this in Laravel 5.2  
 `php artisan make:auth`  
   
