@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "post-update-cmd": [
-        "php artisan vendor:publish --tag=public --force",
+        "php artisan vendor:publish --tag=public --force"
     ],
     "require": {
         "php": ">=5.5.0"
