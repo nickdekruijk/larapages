@@ -11,15 +11,14 @@ Add the Service Provider to the 'providers' array in config/app.php<br>
 <code>NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,</code><br>
 <br>
 If you haven't done so already activate authentication with either<br>
-`
-php artisan make:auth</code>
+```php artisan make:auth```
 or adding this to app/routes.php<br>
-<code>Route::group(['middleware' => ['web']], function () {
+```Route::group(['middleware' => ['web']], function () {
     Route::auth();
 });
-`
+```
 Add the following to app/Http/Controllers/Auth/AuthController
-`
+```
     /**
      * Custom larapages login form
      */
@@ -27,4 +26,4 @@ Add the following to app/Http/Controllers/Auth/AuthController
     {
         return view('laraPages::login');
     }
-`
+```
