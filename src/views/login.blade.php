@@ -1,8 +1,7 @@
 @extends('laraPages::admin')
 
 @section('content')
-<form method="POST" action="/login" accept-charset="UTF-8" class="login">
-<input name="_token" type="hidden" value="{{ csrf_token() }}">
+{!! Form::open(array('url' => '/login','class'=>'login')) !!}
 <h2>Login</h2>
 
 @if ($errors->any())
@@ -20,13 +19,12 @@
 		@endforeach
 	</ul>
 @endif
-<?php
-    dd(Session::flash())
-?>
-<input class="{{ $errors->has('email')?'error':'' }}"    placeholder="E-mail"   value="" name="email" type="email" autofocus="autofocus" >
-<input class="{{ $errors->has('password')?'error':'' }}" placeholder="Password" value="" name="password" type="password">
-<label for="remember_me">Remember me</label><input type="checkbox" name="remember" id="remember_me">
-<input type="submit" value="Login">
 
-</form>
+{!! Form::email   ('email',  null, ['placeholder'=>'E-mail', 'autofocus', 'class'=>$errors->has('email')?'error':'']) !!}
+{!! Form::password('password',  null, ['placeholder'=>'Password', 'class'=>$errors->has('password')?'error':'']) !!}
+<label for="remember_me">Remember me</label><input type="checkbox" name="remember" id="remember_me">
+
+{!! Form::submit('Login') !!}
+
+{!! Form::close() !!}
 @endsection
