@@ -1,6 +1,5 @@
 {
     "name": "nickdekruijk/larapages",
-    "version": "0.1.0",
     "description": "A simple CMS build on Laravel 5",
     "license": "MIT",
 	"keywords": [
@@ -20,7 +19,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "^5.1",    
+        "laravel/framework": "^5.1",
+        "illuminate/html": "^5.0", 
         "tinymce/tinymce": "^4.3"
     },
     "autoload": {
