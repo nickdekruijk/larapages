@@ -8,13 +8,13 @@
             "email": "git@nickdekruijk.nl"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "post-update-cmd": [
         "php artisan vendor:publish --tag=public --force"
     ],
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "^5.1",
+        "laravel/framework": "^5.1",    
         "tinymce/tinymce": "^4.3"
     },
     "autoload": {
