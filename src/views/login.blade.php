@@ -1,7 +1,8 @@
 @extends('laraPages::admin')
 
 @section('content')
-{!! Form::open(array('url' => '/login','class'=>'login')) !!}
+<form method="POST" action="/login" accept-charset="UTF-8" class="login">
+<input name="_token" type="hidden" value="{{ csrf_token() }}">
 <h2>Login</h2>
 
 @if ($errors->any())
@@ -20,11 +21,10 @@
 	</ul>
 @endif
 
-{!! Form::email   ('email',  null, ['placeholder'=>'E-mail', 'autofocus', 'class'=>$errors->has('email')?'error':'']) !!}
-{!! Form::password('password',  null, ['placeholder'=>'Password', 'class'=>$errors->has('password')?'error':'']) !!}
+<input class="{{ $errors->has('email')?'error':'' }}" placeholder="E-mail" autofocus="autofocus" name="email" type="email">
+<input class="{{ $errors->has('password')?'error':'' }}" placeholder="Password" name="password" type="password" value="">
 <label for="remember_me">Remember me</label><input type="checkbox" name="remember" id="remember_me">
+<input type="submit" value="Login">
 
-{!! Form::submit('Login') !!}
-
-{!! Form::close() !!}
+</form>
 @endsection
