@@ -12,6 +12,16 @@ Add the Service Provider to the `'providers'` array in `config/app.php`
 NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,
 ```
   
+If you haven't used the Illuminate\Html before you might need to add this too to the `'providers'` array in `config/app.php`  
+```php
+Illuminate\Html\HtmlServiceProvider::class,
+```  
+And also this to the `'aliases`' array
+```php
+    'Form'		=> Illuminate\Html\FormFacade::class,
+	'Html'		=> Illuminate\Html\HtmlFacade::class,
+```  
+  
 If you haven't done so already activate authentication with this in Laravel 5.2  
 `php artisan make:auth`  
   
