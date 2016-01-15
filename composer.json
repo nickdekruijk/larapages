@@ -14,7 +14,7 @@
             "email": "git@nickdekruijk.nl"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "post-update-cmd": [
         "php artisan vendor:publish --tag=public --force"
     ],
