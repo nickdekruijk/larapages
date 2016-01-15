@@ -1,0 +1,16 @@
+{
+    "name": "nickdekruijk/larapages",
+    "description": "A simple CMS build on Laravel 5.2",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick de Kruijk",
+            "email": "git@nickdekruijk.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "post-update-cmd": [
+        "php artisan vendor:publish --tag=public --force",
+    ],
+    "require": {}
+}
