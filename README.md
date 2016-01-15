@@ -3,12 +3,14 @@ A simple CMS build on Laravel 5 (requires 5.1 or higher)
 
 ## Installation
 To install package use  
-```composer require nickdekruijk/larapages```  
+`composer require nickdekruijk/larapages`  
 or  
-```composer require nickdekruijk/larapages:dev-master```  
+`composer require nickdekruijk/larapages:dev-master`  
   
 Add the Service Provider to the `'providers'` array in `config/app.php`  
-```NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,```
+```php
+NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,
+```
   
 If you haven't done so already activate authentication with either  
 ```php artisan make:auth```
