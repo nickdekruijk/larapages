@@ -12,7 +12,7 @@ Route::post('admin/media/rename', 'MediaController@rename');
 */
 
 # Routes for the admin/cms part
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('admin', 'NickDeKruijk\LaraPages\LaraPagesController@index');
     Route::get('admin/{model}', 'NickDeKruijk\LaraPages\LaraPagesController@model');
     Route::get('admin/{model}/{id}', 'NickDeKruijk\LaraPages\LaraPagesController@show');
