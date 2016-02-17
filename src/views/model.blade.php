@@ -79,7 +79,7 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="/vendor/larapages/js/nestedSortable.min.js"></script>
     <script src="/vendor/larapages/js/admin.js"></script>
-    <script>lp_adminPath="{{ config('larapages.adminpath') }}"</script>
+    <script>lp_adminpath="{{ config('larapages.adminpath') }}"</script>
     <script src="/vendor/larapages/js/model.js"></script>
     <script>
         tinymce.init({

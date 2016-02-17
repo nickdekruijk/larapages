@@ -1,3 +1,6 @@
+// The url used to login, will be set later by template 
+var lp_adminpath=false;
+
 // What to do when a 401 occurs when doing Ajax calls. Probably redirect to login page.
 function lp_401() {
     document.location=document.location;

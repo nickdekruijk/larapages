@@ -6,7 +6,7 @@ function lp_show(modelId,id) {
     // Load items with Ajax GET
     $.ajax({
         cache:'false',
-        url:'/admin/'+modelId+'/'+id,
+        url:'/'+lp_adminpath+'/'+modelId+'/'+id,
         statusCode: {
             401: lp_401,
         },
@@ -60,7 +60,7 @@ function lp_update(modelId,id) {
         method:'post',
         dataType:'json',
         cache:'false',
-        url:'/admin/'+modelId+'/'+action,
+        url:'/'+lp_adminpath+'/'+modelId+'/'+action,
         statusCode: {
             401: lp_401,
             500: lp_500,
@@ -131,7 +131,7 @@ function lp_destroy(modelId,id) {
                 method:'post',
                 dataType:'json',
                 cache:'false',
-                url:'/admin/'+modelId+'/'+id+'/destroy',
+                url:'/'+lp_adminpath+'/'+modelId+'/'+id+'/destroy',
                 success: function(data,status) {
                     $('.listview .active').detach();
                     lp_sizeEditor();
@@ -154,7 +154,7 @@ function lp_changeParent(modelId,id,parent,oldparent) {
         method:'post',
         cache:'false',
         data: 'parent='+parent+'&oldparent='+oldparent,
-        url:'/admin/'+modelId+'/'+id+'/changeparent',
+        url:'/'+lp_adminpath+'/'+modelId+'/'+id+'/changeparent',
         statusCode: {
             401: lp_401,
             500: lp_500,
@@ -189,7 +189,7 @@ function lp_saveSorting(modelId,parent) {
         method:'post',
         cache:'false',
         data: 'ids='+ids,
-        url:'/admin/'+modelId+'/'+parent+'/sort',
+        url:'/'+lp_adminpath+'/'+modelId+'/'+parent+'/sort',
         statusCode: {
             401: lp_401,
             500: lp_500,
@@ -258,7 +258,7 @@ function lp_addMediaClose(save) {
 function lp_addMedia(target) {
     lp_mediaTarget=target;
     lp_media=$(lp_mediaTarget).parent().next('TEXTAREA').val();
-    lp_modalFrame('/admin/media/mini');
+    lp_modalFrame('/'+lp_adminpath+'/media/mini');
 }
 
 $(document).ready(function() {

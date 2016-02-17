@@ -35,6 +35,7 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.5.7/jquery.iframe-transport.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.5.7/jquery.fileupload.min.js"></script>
-    <script src="/js/admin.js"></script>
-    <script src="/js/media.js"></script>
+    <script src="/vendor/larapages/js/admin.js"></script>
+    <script>lp_adminpath="{{ config('larapages.adminpath') }}"</script>
+    <script src="/vendor/larapages/js/media.js"></script>
 @endsection
