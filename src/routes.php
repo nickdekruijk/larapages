@@ -17,6 +17,15 @@ Route::get(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraP
 Route::post(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraPagesController@loginValidate');
 
 Route::group(['middleware' => 'larapages'], function () {
+	Route::get(config('larapages.adminpath').'/media', 'NickDeKruijk\LaraPages\LaraPagesMediaController@index');
+	Route::get(config('larapages.adminpath').'/media/mini', 'NickDeKruijk\LaraPages\LaraPagesMediaController@mini');
+	Route::get(config('larapages.adminpath').'/media/{folder}', 'NickDeKruijk\LaraPages\LaraPagesMediaController@show');
+	Route::post(config('larapages.adminpath').'/media/store', 'NickDeKruijk\LaraPages\LaraPagesMediaController@store');
+	Route::post(config('larapages.adminpath').'/media/newfolder', 'NickDeKruijk\LaraPages\LaraPagesMediaController@newfolder');
+	Route::post(config('larapages.adminpath').'/media/destroy', 'NickDeKruijk\LaraPages\LaraPagesMediaController@destroy');
+	Route::post(config('larapages.adminpath').'/media/destroyFolder', 'NickDeKruijk\LaraPages\LaraPagesMediaController@destroyFolder');
+	Route::post(config('larapages.adminpath').'/media/rename', 'NickDeKruijk\LaraPages\LaraPagesMediaController@rename');
+
     Route::get(config('larapages.adminpath'), 'NickDeKruijk\LaraPages\LaraPagesController@index');
     Route::get(config('larapages.adminpath').'/{model}', 'NickDeKruijk\LaraPages\LaraPagesController@model');
     Route::get(config('larapages.adminpath').'/{model}/{id}', 'NickDeKruijk\LaraPages\LaraPagesController@show');
