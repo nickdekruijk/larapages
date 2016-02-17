@@ -80,6 +80,7 @@
     <script src="/vendor/larapages/js/nestedSortable.min.js"></script>
     <script src="/vendor/larapages/js/admin.js"></script>
     <script>lp_adminpath="{{ config('larapages.adminpath') }}"</script>
+    <script>lp_mediafolder="{{ config('larapages.media.folder') }}"</script>
     <script src="/vendor/larapages/js/model.js"></script>
     <script>
         tinymce.init({
@@ -90,7 +91,13 @@
     	    content_css: '/vendor/larapages/css/tinymce.css',
             browser_spellcheck: true,
             convert_urls : false,
-    	    spellchecker_rpc_url: 'spellchecker.php',
+			file_browser_callback: function(input_id, input_value, type, win){
+				lp_mediaTarget=input_id;
+				lp_media=''; //input_value;
+				lp_modalFrame('/'+lp_adminpath+'/media/mini');
+				return false;
+			},
+			spellchecker_rpc_url: 'spellchecker.php',
     	    //autoresize_max_height: $(window).height()-158,
     	    plugins: [
         	    "autoresize",
@@ -99,7 +106,7 @@
                 "searchreplace wordcount visualblocks code media visualchars", // fullscreen fullpage visualchars insertdatetime nonbreaking
                 "table paste " // save textcolor contextmenu emoticons template directionality
             ],
-            toolbar: "code visualblocks visualchars | undo redo | styleselect | bold italic | bullist numlist outdent indent | link anchor | image media | searchreplace | shy pagebreak charmap", // | alignleft aligncenter alignright alignjustify | forecolor backcolor emoticons insertfile underline
+            toolbar: "code visualblocks | undo redo | styleselect | bold italic | bullist numlist outdent indent | link anchor | image media | searchreplace | shy pagebreak charmap", // | alignleft aligncenter alignright alignjustify | forecolor backcolor emoticons insertfile underline visualchars
             style_formats: [
                 {title: 'Intro', block: 'p', styles: {'font-size':'1.2em', 'margin-bottom':'30px', 'line-height':'1.5em'}},
                 {title: 'H2', block: 'h2'},
