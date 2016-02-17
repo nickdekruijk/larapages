@@ -1,7 +1,8 @@
 @extends('laraPages::admin')
 
 @section('content')
-{!! Form::open(array('url' => '/login','class'=>'login')) !!}
+<form method="POST" accept-charset="UTF-8" class="login">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 <h2>Login</h2>
 
 @if ($errors->any())
@@ -12,19 +13,10 @@
 		@endforeach
 	</ul>
 @endif
-@if (Session::has('messages') && count(session('messages'))>0)
-	<ul class="success">
-		@foreach (session('messages') as $message)
-			<li>{{ ucfirst($message) }}</li>
-		@endforeach
-	</ul>
-@endif
 
-{!! Form::email   ('email',  null, ['placeholder'=>'E-mail', 'autofocus', 'class'=>$errors->has('email')?'error':'']) !!}
-{!! Form::password('password',  null, ['placeholder'=>'Password', 'class'=>$errors->has('password')?'error':'']) !!}
-<label for="remember_me">Remember me</label><input type="checkbox" name="remember" id="remember_me">
+<input placeholder="Username" name="username" type="email"   {{ !session('username')?'autofocus="autofocus"':'' }} value="{{ session('username') }}">
+<input placeholder="Password" name="password" type="password" {{ session('username')?'autofocus="autofocus"':'' }}>
 
-{!! Form::submit('Login') !!}
-
-{!! Form::close() !!}
+<input type="submit" value="Login">
+</form>
 @endsection

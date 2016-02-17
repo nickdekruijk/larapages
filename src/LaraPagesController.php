@@ -23,18 +23,39 @@ class LaraPagesController extends Controller
         $i=0;
         foreach(config('larapages.models') as $model=>$title) {
             $i++;
-            $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?'end':'').($model==$this->modelId?' active':'').'"><a href="/admin/'.$model.'">'.$title.'</li>';
+            $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?'end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/'.$model.'">'.$title.'</li>';
         }
-        $this->nav.='<li class="right end logout"><a href="/logout/">Logout</a></li>';
-        $this->nav.='<li class="right start'.(!$this->modelId?' active':'').'"><a href="/admin/">'.\Auth::user()->name.'</a></li>';
+        $this->nav.='<li class="right end logout"><a href="/'.config('larapages.adminpath').'/login/">Logout</a></li>';
+        $this->nav.='<li class="right start'.(!$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/">'.LaraPagesAuth::user()->name.'</a></li>';
         $this->nav.='</ul>';
         return $this->nav;
+    }
+    
+    public function login() {
+	    session(['larapages_user' => false]);
+		return view('laraPages::login');
+    }
+
+    public function loginValidate(Request $request) {
+	    
+	    session(['larapages_user' => false]);
+
+	    foreach(config('larapages.users') as $username=>$user) {
+		    if (!is_array($user)) 
+		    	$user=['password' => $user];
+		    if (!isset($user['username'])) $user['username']=$username;
+		    if ($request->username==$user['username'] && password_verify($request->password,$user['password'])) {
+				session(['larapages_user' => $user]);
+				return redirect('/'.config('larapages.adminpath'));
+			}
+	    }
+		return back()->with(['username'=>$request->username])->withErrors(['message'=>'Invalid username and/or password']);
     }
 
     # The admin requires authentication
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['parse']]);
+        $this->middleware('larapages', ['except' => ['parse', 'login', 'loginValidate']]);
     }
 
     # Display the admin index.

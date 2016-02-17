@@ -18,7 +18,6 @@ class LaraPagesServiceProvider extends ServiceProvider
             __DIR__.'/config.php' => config_path('larapages.php'),
             __DIR__.'/js' => public_path('vendor/larapages/js'),
             __DIR__.'/css' => public_path('vendor/larapages/css'),
-            __DIR__.'/../../../tinymce/tinymce/' => public_path('vendor/tinymce'),
         ], 'public');
     }
 
