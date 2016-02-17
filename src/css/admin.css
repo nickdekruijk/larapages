@@ -175,8 +175,8 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .editview #upload {padding:0}
 .editview #upload #drop {width:100%;padding:30px 0 0}
 .editview #upload UL {display:block;padding:0;margin:0}
-.editview #upload UL>LI {background-color:#fff;display:block;padding:0 15px 2px;margin:0;position:relative;border-bottom:1px solid rgba(0,0,0,0.2)}
-.editview #upload UL>LI>SPAN.button {position:relative;display:block;float:left;background-color:#d33;color:#fff;height:13px;width:13px;margin:6px 4px 0 0;line-height:11px;text-align:center;border-radius:4px;font-size:15px;cursor:pointer}
+.editview #upload UL>LI {background-color:#fff;display:block;padding:2px 15px 2px;margin:0;position:relative;border-bottom:1px solid rgba(0,0,0,0.2);clear:both}
+.editview #upload UL>LI>SPAN.button {position:relative;display:inline-block;background-color:#d33;color:#fff;height:11px;width:11px;margin:0 4px 0 0;line-height:11px;text-align:center;border-radius:4px;font-size:15px;cursor:pointer}
 .editview #upload UL>LI>SPAN.button:before {content:'×'}
 .editview #upload UL>LI DIV {background-color:rgba(0,200,0,0.4);height:23px;width:0%;position:absolute;margin-left:-15px}
 .editview #upload UL>LI.done>SPAN.button {background-color:#3b3;font-size:11px}
