@@ -39,6 +39,11 @@
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" type="date">
             @elseif ($type=='boolean')
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" value="1" type="checkbox">
+            @elseif ($type=='radio')
+            	@foreach (explode('|',$option) as $n=>$value)
+            	<input id="field_{{ $field }}_{{ $n }}" class="{{ $type }} " name="{{ $field }}" value="{{ $value }}" type="radio">
+                <label class="radio" for="field_{{ $field }}_{{$n}}">{{ str_replace('_',' ',ucfirst($value)) }}</label>
+                @endforeach
             @elseif ($type=='text' || $type=='longtext' || $type=='mediumtext')
             	<textarea id="field_{{ $field }}" class="{{ isset($model->pagesAdmin['tinymce'][$field])?'tinymce ':''}}{{ $type }} " name="{{ $field }}" data-tinymce="{{ isset($model->pagesAdmin['tinymce'][$field])?$model->pagesAdmin['tinymce'][$field]:'' }}"></textarea>
             @elseif ($type=='password') 
