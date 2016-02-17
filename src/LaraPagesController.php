@@ -49,7 +49,7 @@ class LaraPagesController extends Controller
 				return redirect('/'.config('larapages.adminpath'));
 			}
 	    }
-		return back()->with(['username'=>$request->username])->withErrors(['message'=>'Invalid username and/or password']);
+		return back()->with(['username'=>$request->username, 'error'=>'Invalid username and/or password']);
     }
 
     # The admin requires authentication

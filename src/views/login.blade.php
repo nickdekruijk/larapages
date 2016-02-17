@@ -5,12 +5,10 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <h2>Login</h2>
 
-@if ($errors->any())
+@if (session('error'))
 	<ul class="error">
 		Sorry,
-		@foreach ($errors->all() as $error)
-			<li>{{ ucfirst($error) }}</li>
-		@endforeach
+		<li>{{ ucfirst(session('error')) }}</li>
 	</ul>
 @endif
 
