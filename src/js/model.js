@@ -63,7 +63,7 @@ function lp_update(modelId,id) {
         url:'/'+lp_adminpath+'/'+modelId+'/'+action,
         statusCode: {
             401: lp_401,
-            500: lp_500,
+//            500: lp_500,
         },
         data: $('.editview FORM').serialize(),
         success: function(data,status,xhr) {
@@ -100,7 +100,7 @@ function lp_update(modelId,id) {
         },
         error: function(xhr,status,error) {
             if (xhr.status==500)
-                lp_500()
+                lp_500(xhr)
             else if (xhr.status==422) {
                 // 422 means Laravel validation failed
                 var error='';

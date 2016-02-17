@@ -7,8 +7,12 @@ function lp_401() {
 }
 
 // What to do when a 500 occurs when doing Ajax calls.
-function lp_500() {
-    if (confirm('500 error occured. You might need te login again'))
+function lp_500(xhr) {
+	var message='Sorry, an error occured. You may need te login again.';
+	if (xhr && xhr.responseText) 
+		message+='\n\n'+$(xhr.responseText).find('.exception_message').text();
+		
+    if (confirm(message))
         document.location=document.location;
 }
 
