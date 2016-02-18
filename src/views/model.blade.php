@@ -88,7 +88,7 @@
     	    theme: 'modern',
     	    menubar: false,
     	    paste_as_text: true,
-    	    content_css: '/vendor/larapages/css/tinymce.css',
+    	    content_css: "{{ isset($model->pagesAdmin['tinymce_css'])?$model->pagesAdmin['tinymce_css']:'/vendor/larapages/css/tinymce.css' }}",
             browser_spellcheck: true,
             convert_urls : false,
 			file_browser_callback: function(input_id, input_value, type, win){
