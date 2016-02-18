@@ -14,10 +14,16 @@ function lp_show(modelId,id) {
             $('.editview').removeClass('hidden').removeClass('loading').removeClass('new');
             $('.editview .header H2>SPAN').text(id);
             for (field in data) {
-                // Checkboxes need different handling
-                if ($('#field_'+field).attr('type')=='checkbox')
+                if ($('#field_'+field+'_0').attr('type')=='radio')
+	                // If field type = radio make the proper radio button active
+	                $('INPUT[name='+field+']').each(function() {
+						$(this).prop('checked',$(this).val()==data[field]);
+	                });
+                else if ($('#field_'+field).attr('type')=='checkbox')
+	                // If field type = checkbox check it if needed
                     $('#field_'+field).prop('checked',data[field]>0);
                 else
+                	// Otherwise just set the input value
                     $('#field_'+field).val(data[field]);
                 // Update tinymce editors with new data, including check if data=null
                 if ($('#field_'+field).hasClass('tinymce')) {
