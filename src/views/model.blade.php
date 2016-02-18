@@ -107,14 +107,11 @@
                 "table paste " // save textcolor contextmenu emoticons template directionality
             ],
             toolbar: "code visualblocks | undo redo | styleselect | bold italic | bullist numlist outdent indent | link anchor | image media | searchreplace | shy pagebreak charmap", // | alignleft aligncenter alignright alignjustify | forecolor backcolor emoticons insertfile underline visualchars
+@if (isset($model->pagesAdmin['tinymce_formats']))
             style_formats: [
-                {title: 'Intro', block: 'p', styles: {'font-size':'1.2em', 'margin-bottom':'30px', 'line-height':'1.5em'}},
-                {title: 'H2', block: 'h2'},
-                {title: 'H3', block: 'h3'},
-                {title: 'H4', block: 'h4'},
-                {title: 'H5', block: 'h5'},
-                {title: 'H6', block: 'h6'},
-            ],
+	         	{!! $model->pagesAdmin['tinymce_formats'] !!}  
+	        ],
+@endif            
     	});
 	</script>
 @endsection
