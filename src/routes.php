@@ -13,10 +13,12 @@ Route::post('admin/media/rename', 'MediaController@rename');
 
 # Routes for the admin/cms part
 
-Route::get(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraPagesController@login');
-Route::post(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraPagesController@loginValidate');
+Route::group(['middleware' => ['web']], function () {
+	Route::get(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraPagesController@login');
+	Route::post(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraPagesController@loginValidate');
+});
 
-Route::group(['middleware' => 'larapages'], function () {
+Route::group(['middleware' => ['web','larapages']], function () {
 	Route::get(config('larapages.adminpath').'/media', 'NickDeKruijk\LaraPages\LaraPagesMediaController@index');
 	Route::get(config('larapages.adminpath').'/media/mini', 'NickDeKruijk\LaraPages\LaraPagesMediaController@mini');
 	Route::get(config('larapages.adminpath').'/media/{folder}', 'NickDeKruijk\LaraPages\LaraPagesMediaController@show');
