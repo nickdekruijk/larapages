@@ -14,7 +14,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "post-package-cmd": [
+    "post-package-update": [
         "php artisan vendor:publish --tag=public"
     ],
     "require": {
