@@ -14,9 +14,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "post-package-update": [
-        "php artisan vendor:publish --tag=public"
-    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "^5.1"
