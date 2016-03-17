@@ -18,7 +18,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post(config('larapages.adminpath').'/login', 'NickDeKruijk\LaraPages\LaraPagesController@loginValidate');
 });
 
-Route::group(['middleware' => ['web','larapages']], function () {
+Route::group(['middleware' => ['web', 'larapages']], function () {
 	Route::get(config('larapages.adminpath').'/media', 'NickDeKruijk\LaraPages\LaraPagesMediaController@index');
 	Route::get(config('larapages.adminpath').'/media/mini', 'NickDeKruijk\LaraPages\LaraPagesMediaController@mini');
 	Route::get(config('larapages.adminpath').'/media/{folder}', 'NickDeKruijk\LaraPages\LaraPagesMediaController@show');
