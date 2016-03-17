@@ -19,8 +19,8 @@
         "laravel/framework": "^5.1"
     },
     "autoload": {
-        "psr-0": {
-            "NickDeKruijk\\LaraPages": "src/"
+        "psr-4": {
+            "NickDeKruijk\\LaraPages\\": "src/"
         }
     }
 }
