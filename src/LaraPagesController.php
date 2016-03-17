@@ -385,13 +385,10 @@ class LaraPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function parse()
+    public function parse($any, Request $request)
     {
-        # Preview not set. Pretend we are not here. Remove before going live!
-        # if (!session('preview')) abort(404);
-        
         # Start walking the page tree
-        $nav=$this->walk(null,0,func_get_args(),'/');
+        $nav=$this->walk(null,0,$request->segments(),'/');
         
         # If currentPage isn't set raise a 404
         if (!$this->currentPage) abort(404);
