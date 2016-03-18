@@ -1,0 +1,78 @@
+.smoothfont {-webkit-font-smoothing:antialiased;-moz-font-smoothing:grayscale;-moz-osx-font-smoothing:grayscale}
+.noselect {-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:moz-none;-ms-user-select:none;user-select:none}
+
+
+BODY,HTML {height:100%}
+
+BODY {
+	margin:0;
+	font-family:Lato,sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+NAV {
+	background-color:#222;
+	height:40px;
+	line-height:40px;
+	position:fixed;
+	left:0;
+	right:0;
+	top:0;
+	z-index:100;
+	font-family:'News Cycle',sans-serif;
+	font-weight:400;
+	font-size:20px;
+}
+
+NAV UL {display:block;margin:0;padding:0;max-width:1140px;margin:auto}
+NAV LI {display:inline-block;margin:0;padding:0;position:relative}
+NAV UL A {color:#fff;text-decoration:none;display:block;padding:0 10px}
+NAV UL LI.active>A {color:#fe3}
+NAV UL LI:hover {background-color:rgba(255,255,255,0.2)}
+NAV UL UL {display:none;position:absolute;background-color:rgba(32,32,32,0.6);white-space:nowrap;font-size:0.95em}
+NAV UL UL LI {display:block;line-height:2.5em}
+NAV UL UL LI:hover {background-color:rgba(0,0,0,0.4)}
+NAV UL UL UL {left:100%;top:0}
+NAV LI:hover > UL {display:block}
+
+NAV .logo {float:right;color:#fe3;text-decoration:none;font-size:24px;line-height:38px;margin-right:10px}
+NAV .logo > SPAN {color:#fff;font-weight:700}
+
+LABEL.menuicon {display:none}
+INPUT#menuicon {display:none}
+
+DIV.main {padding-bottom:50px;min-height:100%;box-sizing:border-box;position:relative;padding-top:40px;width:100%}
+
+DIV.picture {height:300px;background-size:cover;background-repeat:no-repeat;background-position:center center}
+
+ARTICLE {max-width:1140px;padding:10px;margin:auto;box-sizing:border-box}
+ARTICLE DIV.columns {-webkit-column-count:2;-moz-column-count:2;column-count:2;-webkit-column-gap:30px;-moz-column-gap:30px;column-gap:30px}
+ARTICLE H1 {margin:0.8em auto;font-family:'News Cycle',sans-serif;font-weight:400}
+ARTICLE P {margin:0;padding-bottom:1em;line-height:1.4em}
+ARTICLE DIV.columns2 > P {break-inside:avoid-column;-webkit-column-break-inside:avoid}
+
+FOOTER {text-align:center;background-color:#666;color:#fff;height:50px;position:absolute;bottom:0;width:100%;line-height:50px}
+
+@media screen and (max-width: 700px) {
+	LABEL.menuicon {display:block;padding:6px;position:absolute;z-index:101}
+	LABEL.menuicon SPAN {display:block;width:24px;height:4px;background-color:#fff;border-radius:2px;margin:4px}
+	.nav0 {display:block;position:fixed;top:40px;bottom:0;background-color:#444;transition:all .4s;overflow:auto;margin-left:-200px;width:200px}
+	.nav0 > LI {display:block}
+	NAV UL LI:hover {background-color:inherit !important}
+	NAV LI.active > UL {display:block}
+	NAV UL UL {disp1lay:block;position:static;font-size:0.9em;background-color:inherit;margin-left:15px}
+	DIV.main {position:absolute;width:100%;margin-left:0;transition:all .4s}
+	INPUT#menuicon:checked ~ HEADER .nav0 {display:block;margin-left:0}
+	INPUT#menuicon:checked ~ DIV.main {margin-left:200px}
+	ARTICLE DIV.columns {-webkit-column-count:1;-moz-column-count:1;column-count:1}
+}
+@media screen and (max-height:500px) {
+	DIV.picture {height:200px}
+}
+@media screen and (max-height:400px) {
+	DIV.picture {height:150px}
+}
+@media screen and (max-height:320px) {
+	DIV.picture {height:100px}
+}

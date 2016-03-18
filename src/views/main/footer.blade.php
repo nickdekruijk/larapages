@@ -1,0 +1,1 @@
+&copy;{{ date('Y') }} {{ str_replace('www.','',$_SERVER['SERVER_NAME']) }}

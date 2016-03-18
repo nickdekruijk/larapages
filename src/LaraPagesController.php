@@ -5,6 +5,7 @@ namespace NickDeKruijk\LaraPages;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Response;
 
 class LaraPagesController extends Controller
 {
@@ -390,11 +391,12 @@ class LaraPagesController extends Controller
         # Start walking the page tree
         $nav=$this->walk(null,0,$request->segments(),'/');
         
-        # If currentPage isn't set raise a 404
-        if (!$this->currentPage) abort(404);
+        # If currentPage isn't set raise a custom 404
+        if (!$this->currentPage) 
+        	return Response::view('laraPages::main.404', ['nav'=>$nav], 404);
         
         # Return the page view
-		return view('page',['page'=>$this->currentPage,'nav'=>$nav]);
+		return view('laraPages::main.page',['page'=>$this->currentPage,'nav'=>$nav]);
     }
 
 }
