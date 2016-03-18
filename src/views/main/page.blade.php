@@ -15,9 +15,7 @@
 <article>
     <h1>{{ $page->head }}</h1>
 
-    <div class="columns">
-        {!! $page->body !!}
-    </div>
+    {!! $page->body !!}
     
 </article>
 <div class="clear"></div>
