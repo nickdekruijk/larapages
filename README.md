@@ -1,6 +1,6 @@
 # LaraPages
 A simple CMS build on Laravel 5 (requires 5.1 or higher).
-Basically it's and webbases editor for your Laravel models. Each model must have a `$pagesAdmin` array. See the samples folder for an example.
+Basically it's a webbased editor for your Laravel models. Each model must have a `$pagesAdmin` array. See the samples folder for an example.
 
 ## Installation
 To install package use  
