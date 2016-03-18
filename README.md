@@ -7,8 +7,6 @@ To install package use
 `composer require nickdekruijk/larapages`  
 or  
 `composer require nickdekruijk/larapages:dev-master`  
-Publish the css/js/config with  
-`php artisan vendor:publish`  
   
 Add the Service Provider to the `'providers'` array in `config/app.php`  
 ```php
@@ -19,6 +17,9 @@ Add the larapages middleware to the `$routeMiddleware` array in `app/Http/Kernel
 ```php
 'larapages' => \NickDeKruijk\LaraPages\LaraPagesAuth::class,
 ```
+
+Publish the css/js/config with  
+`php artisan vendor:publish`  
 
 ## Configuration
 On installation a default config file called `larapages.php` will be available in your Laravel `app/config` folder.
