@@ -10,7 +10,7 @@
 	    {{ str_replace('www.','',$_SERVER['HTTP_HOST']) }} - @yield('title')
     </title>
 	<link href='//fonts.googleapis.com/css?family=Lato:300|News+Cycle:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+	<link rel="stylesheet" href="/css/all.css">
     @yield('html_head')
 </head>
 <body>
