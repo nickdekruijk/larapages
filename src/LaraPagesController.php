@@ -393,10 +393,10 @@ class LaraPagesController extends Controller
         
         # If currentPage isn't set raise a custom 404
         if (!$this->currentPage) 
-        	return Response::view('laraPages::main.404', ['nav'=>$nav], 404);
+        	return Response::view(config('larapages.views.404','laraPages::main.404'), ['nav'=>$nav], 404);
         
         # Return the page view
-		return view('laraPages::main.page',['page'=>$this->currentPage,'nav'=>$nav]);
+		return view(config('larapages.views.page','laraPages::main.page'),['page'=>$this->currentPage,'nav'=>$nav]);
     }
 
 }
