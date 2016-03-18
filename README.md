@@ -20,6 +20,9 @@ Add the larapages middleware to the `$routeMiddleware` array in `app/Http/Kernel
 'larapages' => \NickDeKruijk\LaraPages\LaraPagesAuth::class,
 ```
 
+## Configuration
+On installation a default config file called `larapages.php` will be available in your Laravel `app/config` folder.
+
 ## Frontend
 To use the Frontend template and to parse the pages add this to your `routes.php`
 ```php
