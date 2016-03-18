@@ -20,6 +20,7 @@ Add the larapages middleware to the `$routeMiddleware` array in `app/Http/Kernel
 'larapages' => \NickDeKruijk\LaraPages\LaraPagesAuth::class,
 ```
 
+## Frontend
 To use the Frontend template and to parse the pages add this to your `routes.php`
 ```php
 Route::get('{any}', '\NickDeKruijk\LaraPages\LaraPagesController@parse')->where('any', '(.*)');
