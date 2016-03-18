@@ -5,7 +5,7 @@ namespace NickDeKruijk\LaraPages;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Input;
+use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 
 class LaraPagesMediaController extends Controller
