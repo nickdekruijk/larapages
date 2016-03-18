@@ -22,7 +22,7 @@ Publish the css/js/config with
 `php artisan vendor:publish`  
 
 ## Configuration
-On installation a default config file called `larapages.php` will be available in your Laravel `app/config` folder.
+After installation (if you did `php artisan vendor:publish`) a default config file called `larapages.php` will be available in your Laravel `app/config` folder.
 
 ## Frontend
 To use the Frontend template and to parse the pages add this to your `routes.php`
