@@ -29,4 +29,4 @@ To use the Frontend template and to parse the pages add this to your `routes.php
 Route::get('{any}', '\NickDeKruijk\LaraPages\LaraPagesController@parse')->where('any', '(.*)');
 ```
 You will need a Page model. An example model and migration is included in the samples folder.
-And feel free to copy the templates to your Laravel `resources/views/vendor/larapages/main` folder and edit them as you like.
+And feel free to copy the templates to your Laravel `resources/views/vendor/larapages/main` folder and edit them as you like. Or create your own views and set them in the config file.
