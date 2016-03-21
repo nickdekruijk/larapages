@@ -82,9 +82,16 @@ class LaraPagesController extends Controller
     {
         # Fetch all rows
         $rows = $this->model
-                ->where($this->model->pagesAdmin['treeview'],$parent)
-                ->orderBy(isset($this->model->pagesAdmin['orderBy'])?$this->model->pagesAdmin['orderBy']:null,isset($this->model->pagesAdmin['orderDesc']) && $this->model->pagesAdmin['orderDesc']?'desc':'asc')
-                ->get();
+                ->where($this->model->pagesAdmin['treeview'],$parent);
+        if (!empty($this->model->pagesAdmin['orderBy'])) foreach(explode(',',$this->model->pagesAdmin['orderBy']) as $order) {
+	        $order=explode(' ',$order);
+	        if (empty($order[1]))
+	        	$rows=$rows->orderBy($order[0]);
+	        else
+	        	$rows=$rows->orderBy($order[0], $order[1]);
+        }
+        $rows=$rows->get();
+
         # Return if no rows found to prevent empty <ul></ul>
         if (!count($rows)) return;
 
@@ -106,9 +113,16 @@ class LaraPagesController extends Controller
     public function table()
     {
         # Fetch all rows
-        $rows = $this->model
-                ->orderBy(isset($this->model->pagesAdmin['orderBy'])?$this->model->pagesAdmin['orderBy']:null,isset($this->model->pagesAdmin['orderDesc']) && $this->model->pagesAdmin['orderDesc']?'desc':'asc')
-                ->get();
+        $rows = $this->model;
+        if (!empty($this->model->pagesAdmin['orderBy'])) foreach(explode(',',$this->model->pagesAdmin['orderBy']) as $order) {
+	        $order=explode(' ',$order);
+	        if (empty($order[1]))
+	        	$rows=$rows->orderBy($order[0]);
+	        else
+	        	$rows=$rows->orderBy($order[0], $order[1]);
+        }
+        $rows=$rows->get();
+
         # Return if no rows found to prevent empty <ul></ul>
         if (!count($rows)) return;
 
