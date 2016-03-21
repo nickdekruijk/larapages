@@ -111,13 +111,12 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .listview .mjs-nestedSortable-hovering {background-color:orange}
 .listview .mjs-nestedSortable-disabled {background-color:#666}
 
-
 .listview>TABLE {border-spacing:0;border-collapse:collapse;margin-top:30px}
 .listview TR:hover {background-color:rgba(17,108,214,0.3);cursor:default}
 .listview TD {padding:3px 4px 2px 0;font-size:0.85em;opacity:0.5;vertical-align:baseline}
 .listview TD:first-child {padding-left:5px;font-size:1em;opacity:1}
 .listview TR.active {background-color:#116cd6;cursor:default;color:#fff}
-
+.listview TR.inactive {text-decoration:line-through;color:rgba(0,0,0,0.3)}
 
 .editview {position:fixed;right:0;bottom:0;top:45px;overflow:auto;background-color:#eee}
 .editview TABLE {border-spacing:0;border-collapse:collapse;width:100%;margin-top:34px}

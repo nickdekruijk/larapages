@@ -115,7 +115,7 @@ class LaraPagesController extends Controller
         # Create the html list
         $nav='<table>';
         foreach($rows as $row) {
-            $nav.='<tr data-id="'.$row['id'].'">';
+            $nav.='<tr'.(isset($row->pagesAdmin['active']) && !$row[$row->pagesAdmin['active']]?' class="inactive"':'').' data-id="'.$row['id'].'">';
             foreach (explode(',',$this->model->pagesAdmin['index']) as $index)
                 $nav.='<td>'.$row[$index].'</td>';
             $nav.='</tr>';
