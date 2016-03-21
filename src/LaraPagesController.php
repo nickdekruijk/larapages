@@ -394,7 +394,19 @@ class LaraPagesController extends Controller
         if (!$hidden)
             return $nav;
     }
-    
+
+    /**
+     * Raise a 404 error and load our custom 404 message with navigation
+     *
+     * @return \Illuminate\Http\Response
+     */
+    static public function raise404()
+    {
+        $nav=new LaraPagesController;
+        $nav=$nav->walk(null,0,\Request::segments(),'/');
+	    return Response::view(config('larapages.views.404','laraPages::main.404'), ['nav'=>$nav], 404);
+    }
+
     /**
      * Parse the pages tree find the currentPage and return navigation html
      *
