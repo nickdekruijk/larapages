@@ -1,7 +1,7 @@
 @extends('laraPages::admin')
 
 @section('content')
-<form method="POST" accept-charset="UTF-8" class="login">
+<form method="POST" accept-charset="UTF-8" class="login" novalidate>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <h2>Login</h2>
 
