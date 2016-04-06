@@ -54,11 +54,14 @@ return [
     |
     | Specify the users and passwords you want to be able to login to laraPages
     | Hash passwords with bcrypt() or password_hash('xxx', PASSWORD_BCRYPT)
+    | Most secure is to put the hash string here, for example:
+    | 'admin' => '"$2y$10$ugiFuuMhKZNYHfhdoewkZYUlt1UhkBux3FYDRXcmURhhr/eHC"' 
+    | By default get the admin password from LARAPAGES_ADMIN_PASSWORD in .env
     |
     */
 	    
     'users' => [
-	    'admin' => false,
+	    'admin' => password_hash(env('LARAPAGES_ADMIN_PASSWORD'), PASSWORD_BCRYPT),
 	    'user' => false,
     ],
 
