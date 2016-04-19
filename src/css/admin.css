@@ -130,6 +130,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .editview LABEL.radio {clear:none;margin:0 15px 0 3px}
 .editview INPUT[type=date] {width:auto}
 .editview FORM INPUT[type=radio] {float:left}
+.editview TEXTAREA.media.single {height:26px}
 .editview TEXTAREA.text {height:50px}
 .editview TEXTAREA.mediumtext {height:100px}
 .editview TEXTAREA.longtext {height:150px}
@@ -203,6 +204,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .editview UL.media.list>LI>SPAN {width:auto;display:table-cell;position:relative;padding:3px;text-align:left;height:auto;vertical-align:middle;bottom:auto}
 .editview UL.media.list>LI>SPAN.fileselect {display:none}
 .editview.mini UL.media.list>LI>SPAN.fileselect {display:table-cell}
+.editview.mini.single UL.media.list>LI>SPAN.fileselect {display:none}
 .editview UL.media.list>LI>SPAN.title {padding-right:60px}
 .editview UL.media.list>LI>SPAN.title:hover {text-decoration:underline;cursor:pointer}
 .editview.mini UL.media.list>LI>SPAN.title:hover {text-decoration:none;cursor:inherit}

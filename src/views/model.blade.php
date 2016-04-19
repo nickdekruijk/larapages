@@ -50,7 +50,7 @@
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" type="password">
             @elseif ($type=='media') 
                 <div class="media" data-max="{{ $option }}"><div></div><span class="add iconplus"></span></div>
-            	<textarea id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}"></textarea>
+            	<textarea id="field_{{ $field }}" class="{{ $type }} {{ $option>1?'multiple':'single' }}" name="{{ $field }}"></textarea>
             @else
             	<input placeholder="{{ $type!='string'?$type:'' }}" id="field_{{ $field }}" size="{{ $maxlength }}" maxlength="{{ $maxlength }}" class="{{ $type }} " name="{{ $field }}" type="text">
             @endif

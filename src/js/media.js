@@ -20,6 +20,10 @@ function lp_fileselect(target) {
     checkbox.prop('checked',$(target).parent().hasClass('selected'));
 
     file=file.substr(1);
+    if (window.parent.lp_mediaMax==1) {
+        window.parent.lp_media=file;
+        window.parent.lp_addMediaClose(true);
+    }
     var newmedia='';
     var found=false;
     var oldmedia=window.parent.lp_media.split('\n');
@@ -69,6 +73,10 @@ function lp_show(modelId,id) {
                 $(this).text(lp_formatFileSize($(this).text()));
             });
             if ($('.editview').hasClass('mini')) {
+                if (window.parent.lp_mediaMax>1) 
+                    $('.editview').removeClass('single');
+                else
+                    $('.editview').addClass('single');
                 lp_fileselectCheck()
                 $('.editview SPAN').click(function() {
                     lp_fileselect(this);

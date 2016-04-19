@@ -250,7 +250,7 @@ function lp_nestedSortable() {
 }
 
 var lp_media=false;
-var lp_mediaMulti=false;
+var lp_mediaMax=false;
 var lp_mediaTarget=false;
 
 function lp_addMediaClose(save) {
@@ -262,13 +262,15 @@ function lp_addMediaClose(save) {
         	$('#'+lp_mediaTarget).val('/'+lp_mediafolder+'/'+lp_media);
     lp_mediaTarget=false;
     lp_media=false;
-    lp_mediaMulti=false;
 }
 
 // Open the media browser in mini mode to allow selecting (multiple) files
 function lp_addMedia(target) {
     lp_mediaTarget=target;
-    lp_mediaMulti=true;
+    if ($(lp_mediaTarget).parent().data('max')>1)
+        lp_mediaMax=$(lp_mediaTarget).parent().data('max');
+    else
+        lp_mediaMax=1;
     lp_media=$(lp_mediaTarget).parent().next('TEXTAREA').val();
     lp_modalFrame('/'+lp_adminpath+'/media/mini');
 }
