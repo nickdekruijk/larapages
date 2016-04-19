@@ -79,7 +79,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .listview LI>UL {display:none}
 .listview LI.open>UL {display:block}
 .listview LI > DIV {padding:3px 0 2px 15px;line-height:1.1em;position:relative}
-.listview LI > DIV > SPAN {font-size:0.7em;display:inline-block;opacity:0.5;line-height:0.8em}
+.listview LI > DIV > SPAN {font-size:0.7em;display:inline-block;opacity:0.5;line-height:1em;max-width:300px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .listview LI > DIV > SPAN:after {content:',';margin-right:2px}
 .listview LI > DIV > SPAN:first-child {width:15px;margin-top:-3px;margin-left:-15px;position:absolute;cursor:pointer;height:100%}
 .listview LI > DIV > SPAN:first-child:hover {background-color:rgba(255,255,255,0.9)}
