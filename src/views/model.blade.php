@@ -23,7 +23,7 @@
     <table>
     @foreach($model->getFillable() as $field)
         <tr>
-            <td><label for="field_{{ $field }}">{{ str_replace('_',' ',$field) }}</label></td>
+            <td><label for="field_{{ $field }}">{{ isset($model->pagesAdmin['rename'][$field])?$model->pagesAdmin['rename'][$field]:ucfirst(str_replace('_',' ',$field)) }}</label></td>
             <?php 
                 $maxlength='255';
                 $type=explode(',',isset($model->pagesAdmin['type'][$field])?$model->pagesAdmin['type'][$field]:false,2);

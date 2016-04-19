@@ -35,6 +35,9 @@ class Page extends Model
             'picture'=>'media,10',
             'body'=>'longtext',
         ],
+        'rename'=>[                                 # Rename columns
+            'picture'=>'Media',
+        ],
         'tinymce'=>[                                # List of columns that can contain html and should be edited with TinyMCE
             'body'=>'tinymce options',
         ],
@@ -51,7 +54,6 @@ class Page extends Model
         'description',
         'date',
         'picture',
-        'caption',
         'body',
     ];
     

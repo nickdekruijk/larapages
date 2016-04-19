@@ -123,7 +123,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .editview TABLE TD:first-child {width:1px;white-space:nowrap}
 .editview TABLE TD {position:relative;padding:1px 5px}
 .editview FORM {padding:0 0 4px 0}
-.editview LABEL {text-transform: capitalize;float:left;display:block;clear:both}
+.editview LABEL {float:left;display:block;clear:both}
 .editview LABEL.radio {clear:none;margin:0 15px 0 3px}
 .editview INPUT[type=date] {width:auto}
 .editview FORM INPUT[type=radio] {float:left}
