@@ -1,7 +1,7 @@
 @extends('laraPages::admin')
 
 @section('title')
-{{ config('larapages.media.nicename') }}
+{{ config('larapages.media.nicename', 'Media') }}
 @endsection
 
 @section('content')
