@@ -1,5 +1,9 @@
 @extends('laraPages::admin')
 
+@section('title')
+{{ config('larapages.media.nicename') }}
+@endsection
+
 @section('content')
 <div class="listview media noselect{{ $mini?' mini':'' }}" data-model="<?=$media->controllerUrl?>" data-expanded="<?=isset($media->options['expanded']) && $media->options['expanded']>0?$media->options['expanded']:''?>">
     <div class="header">

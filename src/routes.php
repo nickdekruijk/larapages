@@ -29,12 +29,12 @@ Route::group(['middleware' => ['web', 'larapages']], function () {
 	Route::post(config('larapages.adminpath').'/media/rename', 'NickDeKruijk\LaraPages\LaraPagesMediaController@rename');
 
     Route::get(config('larapages.adminpath'), 'NickDeKruijk\LaraPages\LaraPagesController@index');
-    Route::get(config('larapages.adminpath').'/{model}', 'NickDeKruijk\LaraPages\LaraPagesController@model');
-    Route::get(config('larapages.adminpath').'/{model}/{id}', 'NickDeKruijk\LaraPages\LaraPagesController@show');
-    Route::post(config('larapages.adminpath').'/{model}/store/{parent}', 'NickDeKruijk\LaraPages\LaraPagesController@store');
-    Route::post(config('larapages.adminpath').'/{model}/store/', 'NickDeKruijk\LaraPages\LaraPagesController@store');
-    Route::post(config('larapages.adminpath').'/{model}/{id}/update', 'NickDeKruijk\LaraPages\LaraPagesController@update');
-    Route::post(config('larapages.adminpath').'/{model}/{id}/destroy', 'NickDeKruijk\LaraPages\LaraPagesController@destroy');
-    Route::post(config('larapages.adminpath').'/{model}/{id}/changeparent', 'NickDeKruijk\LaraPages\LaraPagesController@changeparent');
-    Route::post(config('larapages.adminpath').'/{model}/{parent}/sort', 'NickDeKruijk\LaraPages\LaraPagesController@sort');
+    Route::get(config('larapages.adminpath').'/model/{model}', 'NickDeKruijk\LaraPages\LaraPagesController@model');
+    Route::get(config('larapages.adminpath').'/model/{model}/{id}', 'NickDeKruijk\LaraPages\LaraPagesController@show');
+    Route::post(config('larapages.adminpath').'/model/{model}/store/{parent}', 'NickDeKruijk\LaraPages\LaraPagesController@store');
+    Route::post(config('larapages.adminpath').'/model/{model}/store/', 'NickDeKruijk\LaraPages\LaraPagesController@store');
+    Route::post(config('larapages.adminpath').'/model/{model}/{id}/update', 'NickDeKruijk\LaraPages\LaraPagesController@update');
+    Route::post(config('larapages.adminpath').'/model/{model}/{id}/destroy', 'NickDeKruijk\LaraPages\LaraPagesController@destroy');
+    Route::post(config('larapages.adminpath').'/model/{model}/{id}/changeparent', 'NickDeKruijk\LaraPages\LaraPagesController@changeparent');
+    Route::post(config('larapages.adminpath').'/model/{model}/{parent}/sort', 'NickDeKruijk\LaraPages\LaraPagesController@sort');
 });

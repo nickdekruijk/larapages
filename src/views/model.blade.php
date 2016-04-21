@@ -1,5 +1,9 @@
 @extends('laraPages::admin')
 
+@section('title')
+{{ isset($model->pagesAdmin['nicename'])?$model->pagesAdmin['nicename']:ucfirst(str_plural($modelId)) }}
+@endsection
+
 @section('content')
 <div class="listview noselect" data-model="{{ $modelId }}" data-expanded="<?=isset($model->pagesAdmin['expanded']) && $model->pagesAdmin['expanded']>0?$model->pagesAdmin['expanded']:''?>">
     <div class="header">

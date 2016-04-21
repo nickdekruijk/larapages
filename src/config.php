@@ -17,7 +17,6 @@ return [
 
     'models' => [
         'page'=>'Pages',
-        'media'=>'Media',
         'user'=>'Users',    
     ],
     
@@ -38,10 +37,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Options for media management
+    | Set to false to disable media completly
     |
     */
 
     'media' => [
+        'nicename'=>'Media',     # Nicename to show in menu
         'expanded'=>3,           # When treeview is shown auto expand up to 3 levels
         'maxUploadSize'=>'12',   # Maximum size of an uploaded file in megabytes, still limited by php.ini upload_max_filesize and post_max_size
         'folder'=>'media',       # Base folder to store uploaded files. Will be public_path(this)

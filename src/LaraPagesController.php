@@ -24,8 +24,10 @@ class LaraPagesController extends Controller
         $i=0;
         foreach(config('larapages.models') as $model=>$title) {
             $i++;
-            $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?'end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/'.$model.'">'.$title.'</li>';
+            $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?'end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model.'">'.$title.'</li>';
         }
+        if (config('larapages.media'))
+           $this->nav.='<li class="start end logout'.($this->modelId=='media'?' active':'').'"><a href="/'.config('larapages.adminpath').'/media/">'.config('larapages.media.nicename').'</a></li>';
         $this->nav.='<li class="right end logout"><a href="/'.config('larapages.adminpath').'/login/">Logout</a></li>';
         $this->nav.='<li class="right start'.(!$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/">'.LaraPagesAuth::user()->name.'</a></li>';
         $this->nav.='</ul>';
