@@ -16,6 +16,8 @@ class LaraPagesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/views', 'laraPages');
         $this->publishes([
             __DIR__.'/config.php' => config_path('larapages.php'),
+        ], 'config');
+        $this->publishes([
             __DIR__.'/js' => public_path('vendor/larapages/js'),
             __DIR__.'/css' => public_path('vendor/larapages/css'),
         ], 'public');
