@@ -16,6 +16,8 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->integer('parent')->nullable()->unsigned();
             $table->boolean('active')->default(1);
+            $table->boolean('hidden')->default(0);
+            $table->boolean('home')->default(0);
             $table->string('title',100);
             $table->string('head')->nullable();
             $table->string('html_title',65)->nullable();
