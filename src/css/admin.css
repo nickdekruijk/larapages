@@ -18,6 +18,7 @@ UL.nav0 > LI:hover > A {background-color:#9a9a9a}
 UL.nav0 > LI.active > A {background-color:#cecece;color:#444}
 
 FORM.login {width:300px;margin:auto;padding-top:45px;color:#444}
+FORM SELECT,
 FORM TEXTAREA,
 FORM INPUT[type=email],
 FORM INPUT[type=date],
@@ -33,6 +34,7 @@ FORM INPUT[type=submit] {background-color:#444;border:0 none;color:#fff;cursor:p
 FORM INPUT[type=submit]:hover {background-color:#808080}
 
 FORM INPUT.error {border:1px solid #f99;background-color:#fee}
+FORM SELECT.join {width:auto}
 
 HEADER.mini {display:none}
 .listview.mini {top:0}
