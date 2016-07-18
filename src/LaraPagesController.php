@@ -132,8 +132,15 @@ class LaraPagesController extends Controller
         $nav='<table>';
         foreach($rows as $row) {
             $nav.='<tr'.(isset($row->pagesAdmin['active']) && !$row[$row->pagesAdmin['active']]?' class="inactive"':'').' data-id="'.$row['id'].'">';
-            foreach (explode(',',$this->model->pagesAdmin['index']) as $index)
-                $nav.='<td>'.$row[$index].'</td>';
+            foreach (explode(',',$this->model->pagesAdmin['index']) as $index) {
+                # Check if index field has a dot and fetch sub value
+                $sub=explode('.',$index);
+                if (isset($sub[1])) 
+                    $value=$row[$sub[0]][$sub[1]];
+                else
+                    $value=$row[$index];
+                $nav.='<td>'.$value.'</td>';
+            }
             $nav.='</tr>';
         }
 
