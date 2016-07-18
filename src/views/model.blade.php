@@ -52,6 +52,14 @@
             	<textarea id="field_{{ $field }}" class="{{ isset($model->pagesAdmin['tinymce'][$field])?'tinymce ':''}}{{ $type }} " name="{{ $field }}" data-tinymce="{{ isset($model->pagesAdmin['tinymce'][$field])?$model->pagesAdmin['tinymce'][$field]:'' }}"></textarea>
             @elseif ($type=='password') 
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" type="password">
+            @elseif ($type=='join') 
+                <select id="field_{{ $field }}" class="{{ $type }}" name="{{ $field }}">
+                    <?php $option=explode(',',$option) ?>
+                    <option value=""></option>
+                    @foreach((new $option[0])->get() as $opt)
+                    <option value="{{ $opt['id'] }}">{{ $opt[$option[1]] }}</option>
+                    @endforeach
+                </select>
             @elseif ($type=='media') 
                 <div class="media" data-max="{{ $option }}"><div></div><span class="add iconplus"></span></div>
             	<textarea id="field_{{ $field }}" class="{{ $type }} {{ $option>1?'multiple':'single' }}" name="{{ $field }}"></textarea>
