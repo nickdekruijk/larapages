@@ -111,12 +111,12 @@ class LaraPagesMediaController extends Controller
         # Which extensions are allowed
         $allowed = ['png', 'jpg', 'jpeg', 'gif', 'zip', 'pdf', 'doc', 'docx', 'csv', 'xls', 'xlsx', 'pages', 'numbers', 'psd', 'mp4', 'mp3', 'mpg', 'm4a', 'ogg'];
         
-        $upl=$request->file('upl');
-
         # Check if upload file exists
-        if (!$upl)
+        if (!$request->hasFile('upl'))
             die('{"status":"error, File may be too big?"}');
 
+        $upl=$request->file('upl');
+        
         # Check if it had an error
         if ($upl->getError())
             die('{"status":"error '.$upl->getError().': '.str_replace('"','\\"',$upl->getErrorMessage()).'"}');
