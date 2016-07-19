@@ -387,7 +387,7 @@ class LaraPagesController extends Controller
             
             # Add page to navigation html and add active class when needed
             if (!$page->hidden) {
-                $nav.='<li'.($ids[$depth]==$page->url?' class="active"':'').'>';
+                $nav.=' <li'.($ids[$depth]==$page->url?' class="active"':'').'>';
                 $nav.='<a href="'.$url.$page->url.'">'.$page->title.'</a>';
             }
             # Check if this page has subpages and add them
