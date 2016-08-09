@@ -24,7 +24,18 @@ class LaraPagesController extends Controller
         $i=0;
         foreach(config('larapages.models') as $model=>$title) {
             $i++;
-            $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model.'">'.$title.'</li>';
+            if (is_array($title)) {
+                $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a>'.$model.'</a>';
+                $this->nav.='<ul class="nav1">';
+                $i2=0;
+                foreach($title as $model2=>$title2) {
+                    $i2++;
+                    $this->nav.='<li class="'.($i2==1?'start':'').($i2==count(config('larapages.models'))?' end':'').($model2==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model2.'">'.$title2.'</a></li>';
+                }
+                $this->nav.='</ul>';
+                $this->nav.='</li>';
+            } else
+                $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model.'">'.$title.'</a></li>';
         }
         if (config('larapages.media'))
            $this->nav.='<li class="start end logout'.($this->modelId=='media'?' active':'').'"><a href="/'.config('larapages.adminpath').'/media/">'.config('larapages.media.nicename', 'Media').'</a></li>';
