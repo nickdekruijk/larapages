@@ -8,6 +8,9 @@
 
 <article>
 <h2>{{ $report }}</h2>
+<div class="buttons">
+    <a href="/{{ config('larapages.adminpath').'/reports/csv/'.str_slug($report) }}">Download CSV</a>
+</div>
 <table class="report">
     @foreach ($data as $rowId=>$row)
     @if ($rowId==0)

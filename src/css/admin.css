@@ -242,6 +242,13 @@ TABLE.report {border-collapse:collapse;border-spacing:0}
 TABLE.report TH {text-align:left;background-color:#ccc;padding:2px 4px}
 TABLE.report TD {padding:2px 4px;border:1px solid #ccc}
 
+DIV.buttons {margin:15px 0}
+DIV.buttons:after {content:'';display:block;clear:both}
+DIV.buttons A {text-decoration:none;color:#fff;display:inline-block;background-color:#808080;padding:5px 10px;float:left}
+DIV.buttons A:first-child {border-top-left-radius:5px;border-bottom-left-radius:5px}
+DIV.buttons A:last-child {border-top-right-radius:5px;border-bottom-right-radius:5px}
+DIV.buttons A:hover {background-color:#9a9a9a}
+
 /* Styles for datepicker */
 .ui-datepicker {font-size:0.9em !important;font-family: inherit !important}
 .ui-widget button {font-family: inherit !important}

@@ -84,7 +84,29 @@ class LaraPagesController extends Controller
 		return back()->with(['username'=>$request->username, 'error'=>'Invalid username and/or password']);
     }
     
-    public function report($reportSlug) {
+    # Create CSV file for the report
+    public function reportCSV($reportSlug) {
+        function csvrow($row, $header=false)
+        {
+            $csvrow='';
+            foreach($row as $field=>$value)
+                $csvrow.=($csvrow?';':'').'"'.($header?$field:$value).'"';
+            return $csvrow.chr(10);
+        }
+
+        $data=$this->report($reportSlug, true);
+
+        $csv='';
+        foreach($data as $rowId=>$row) {
+            if ($rowId==0)
+                $csv.=csvrow($row, true);
+            $csv.=csvrow($row);
+        }
+
+        return response($csv)->header('Content-type','text/csv')->header('Content-disposition','attachment;filename='.$reportSlug.'.csv');
+    }
+    
+    public function report($reportSlug, $array=false) {
         $report=false;
         foreach(config('larapages.reports.queries') as $name=>$query)
             if ($reportSlug==str_slug($name)) {
@@ -93,7 +115,10 @@ class LaraPagesController extends Controller
             }
         if (!$report) abort(404);
         $data = DB::select($query);
-		return view('laraPages::report',['admin'=>$this, 'report'=>$report, 'data'=>$data, 'nav'=>$this->nav()]);
+        if ($array)
+            return $data;
+        else
+		    return view('laraPages::report',['admin'=>$this, 'report'=>$report, 'data'=>$data, 'nav'=>$this->nav()]);
     }
 
     # The admin requires authentication

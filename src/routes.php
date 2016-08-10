@@ -20,6 +20,7 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['middleware' => ['web', 'larapages']], function () {
 	Route::get(config('larapages.adminpath').'/reports/{report}', 'NickDeKruijk\LaraPages\LaraPagesController@report');
+	Route::get(config('larapages.adminpath').'/reports/csv/{report}', 'NickDeKruijk\LaraPages\LaraPagesController@reportCSV');
 
 	Route::get(config('larapages.adminpath').'/media', 'NickDeKruijk\LaraPages\LaraPagesMediaController@index');
 	Route::get(config('larapages.adminpath').'/media/mini', 'NickDeKruijk\LaraPages\LaraPagesMediaController@mini');
