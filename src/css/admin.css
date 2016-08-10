@@ -238,6 +238,10 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+TABLE.report {border-collapse:collapse;border-spacing:0}
+TABLE.report TH {text-align:left;background-color:#ccc;padding:2px 4px}
+TABLE.report TD {padding:2px 4px;border:1px solid #ccc}
+
 /* Styles for datepicker */
 .ui-datepicker {font-size:0.9em !important;font-family: inherit !important}
 .ui-widget button {font-family: inherit !important}
