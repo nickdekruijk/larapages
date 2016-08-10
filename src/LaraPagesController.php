@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Response;
+use DB;
 
 class LaraPagesController extends Controller
 {
@@ -22,25 +23,42 @@ class LaraPagesController extends Controller
         if ($this->nav) return $this->nav;
         $this->nav='<ul class="nav0">';
         $i=0;
+        
+        # Show all models
         foreach(config('larapages.models') as $model=>$title) {
             $i++;
             if (is_array($title)) {
+                # Model is actually a submenu
                 $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a>'.$model.'</a>';
                 $this->nav.='<ul class="nav1">';
-                $i2=0;
-                foreach($title as $model2=>$title2) {
-                    $i2++;
-                    $this->nav.='<li class="'.($i2==1?'start':'').($i2==count(config('larapages.models'))?' end':'').($model2==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model2.'">'.$title2.'</a></li>';
-                }
+                foreach($title as $model2=>$title2)
+                    $this->nav.='<li class="'.($model2==$this->modelId?'active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model2.'">'.$title2.'</a></li>';
                 $this->nav.='</ul>';
                 $this->nav.='</li>';
             } else
                 $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model.'">'.$title.'</a></li>';
         }
+        
+        # Show Media button if needed
         if (config('larapages.media'))
-           $this->nav.='<li class="start end logout'.($this->modelId=='media'?' active':'').'"><a href="/'.config('larapages.adminpath').'/media/">'.config('larapages.media.nicename', 'Media').'</a></li>';
+            $this->nav.='<li class="start end'.($this->modelId=='media'?' active':'').'"><a href="/'.config('larapages.adminpath').'/media/">'.config('larapages.media.nicename', 'Media').'</a></li>';
+           
+        # Show Report button if needed
+        if (config('larapages.reports')) {
+            $this->nav.='<li class="start end logout'.($this->modelId=='reports'?' active':'').'"><a>'.config('larapages.reports.nicename', 'Reports').'</a>';
+            $this->nav.='<ul class="nav1">';
+            foreach(config('larapages.reports.queries') as $name=>$query)
+                $this->nav.='<li class="'.($name==$this->modelId?'active':'').'"><a href="/'.config('larapages.adminpath').'/reports/'.str_slug($name).'">'.$name.'</a></li>';
+            $this->nav.='</ul>';
+            $this->nav.='</li>';
+        }
+        
+        # Show logout button
         $this->nav.='<li class="right end logout"><a href="/'.config('larapages.adminpath').'/login/">Logout</a></li>';
+        
+        # Show dashboard button with users name
         $this->nav.='<li class="right start'.(!$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/">'.LaraPagesAuth::user()->name.'</a></li>';
+        
         $this->nav.='</ul>';
         return $this->nav;
     }
@@ -64,6 +82,18 @@ class LaraPagesController extends Controller
 			}
 	    }
 		return back()->with(['username'=>$request->username, 'error'=>'Invalid username and/or password']);
+    }
+    
+    public function report($reportSlug) {
+        $report=false;
+        foreach(config('larapages.reports.queries') as $name=>$query)
+            if ($reportSlug==str_slug($name)) {
+                $report=$name;
+                break;
+            }
+        if (!$report) abort(404);
+        $data = DB::select($query);
+		return view('laraPages::report',['admin'=>$this, 'report'=>$report, 'data'=>$data, 'nav'=>$this->nav()]);
     }
 
     # The admin requires authentication
