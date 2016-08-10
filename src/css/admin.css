@@ -20,6 +20,8 @@ UL.nav1 > LI.active > A {background-color:#cecece;color:#444}
 UL.nav1 {display:none;position:absolute;margin:-10px 0 0;padding:0}
 UL.nav1 > LI {display:block;margin:0;padding:0;background-color:#808080}
 UL.nav1 > LI > A {display:block;color:#fff;text-decoration:none;padding:5px 20px}
+UL.nav1 > LI:first-child {border-radius:5px 5px 0 0;overflow:hidden}
+UL.nav1 > LI:first-child > A {padding-top:8px}
 UL.nav1 > LI:last-child {border-radius:0 0 5px 5px;overflow:hidden}
 UL.nav1 > LI:last-child > A {padding-bottom:8px}
 UL.nav1 > LI > A:hover {background-color:#9a9a9a}
