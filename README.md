@@ -25,9 +25,9 @@ Publish the css/js/config with
 After installation (if you did `php artisan vendor:publish`) a default config file called `larapages.php` will be available in your Laravel `app/config` folder.
 
 ## Frontend
-To use the Frontend template and to parse the pages add this to your `routes.php`
+To use the Frontend template and to parse the pages add this to your `routes.php` or `web.php` if you use the Page model from our sample
 ```php
-Route::get('{any}', '\NickDeKruijk\LaraPages\LaraPagesController@parse')->where('any', '(.*)');
+Route::get('{any}', '\App\Page@route')->where('any', '(.*)');
 ```
 You will need a Page model. An example model and migration is included in the samples folder.
 And feel free to copy the templates to your Laravel `resources/views/vendor/larapages/main` folder and edit them as you like. Or create your own views and set them in the config file.
