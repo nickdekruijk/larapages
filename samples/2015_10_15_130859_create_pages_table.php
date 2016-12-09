@@ -18,13 +18,14 @@ class CreatePagesTable extends Migration
             $table->boolean('active')->default(1);
             $table->boolean('hidden')->default(0);
             $table->boolean('home')->default(0);
+            $table->string('view',100);
             $table->string('title',100);
             $table->string('head')->nullable();
             $table->string('html_title',65)->nullable();
             $table->string('url',100)->nullable();
             $table->text('description')->nullable();
             $table->date('date')->nullable();
-            $table->string('picture')->nullable();
+            $table->text('pictures')->nullable();
             $table->longText('body')->nullable();
             $table->integer('sort')->default(0)->unsigned();
             $table->softDeletes();

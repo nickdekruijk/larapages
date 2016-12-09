@@ -32,11 +32,11 @@ class Page extends Model
             'html_title'=>'64',
             'description'=>'text',
             'date'=>'date',
-            'picture'=>'media,10',
+            'pictures'=>'media,10',
             'body'=>'longtext',
         ],
         'rename'=>[                                 # Rename columns
-            'picture'=>'Media',
+            'pictures'=>'Media',
         ],
         'tinymce'=>[                                # List of columns that can contain html and should be edited with TinyMCE
             'body'=>'tinymce options',
@@ -62,7 +62,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at','published_at'];
+    protected $dates = ['date', 'deleted_at', 'published_at'];
     
     # This scope returns only the active pages and in the right order
     public function scopeActiveSorted($query)
@@ -101,4 +101,54 @@ class Page extends Model
 
         return $value;
     }
+
+    # Determine fullUrl by include the parent url(s)
+    public function getFullUrlAttribute()
+    {
+        if ($this->parent>0) {
+            $parent=Page::findOrFail($this->parent);
+            return $parent->fullUrl.'/'.$this->url;
+        } else
+            return $this->url;
+    }
+
+    # If picture is empty return first picture from pictures column
+    public function getPictureAttribute($value)
+    {
+        if (!$value)
+            $value=trim(explode(chr(10), trim($this->pictures))[0]);
+        return $value;
+    }
+
+    # Return the children of the page (subpages)
+    public function children()
+    {
+        return $this->hasMany('App\Page', 'parent');
+    }
+
+    # Fetch the navigation tree, usefull for pages not using the @route menthod
+    public static function navigation()
+    {
+        $page=new Page;
+        return $page->walk();
+    }
+
+    /**
+     * Controller method for Route creation
+     * In routes.php / web.php use:
+     * Route::get('{any}', '\App\Page@route')->where('any', '(.*)');
+     */
+    public function route($any, Request $request)
+    {
+        # Start walking the page tree
+        $navigationHtml = $this->walk(null, 0, Request::segments());
+
+        # If currentPage isn't set raise a custom 404
+        if (!$this->currentPage) abort(404);
+        
+        # Return the page view
+        if ($this->currentPage['parent']>0) $this->currentPage['view']='detail';
+		return view($this->currentPage['view']?$this->currentPage['view']:'page', ['page' => $this->currentPage, 'navigationHtml' => $navigationHtml]);
+    }
+
 }
