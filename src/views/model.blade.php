@@ -78,6 +78,20 @@
         @endif
         </tr>
     @endforeach
+    @if (!empty($model->pagesAdmin['belongsToMany']))
+        @foreach($model->pagesAdmin['belongsToMany'] as $field=>$options)
+            @php (list($remoteModel, $method)=explode(',', $options))
+            <tr>
+                <td><label>{{ $field }}</label></td>
+                <td>
+                    @foreach((new $remoteModel)->get() as $row)
+                        <input id="field_many_{{str_slug($field)}}_{{ $row->id }}" class="many" name="many_{{str_slug($field)}}[]" value="{{$row->id}}" type="checkbox">
+                        <label for="field_many_{{str_slug($field)}}_{{ $row->id }}" class="many">{{$row[$row->pagesAdmin['index']]}}</label>
+                    @endforeach
+                </td>
+            </tr>
+        @endforeach
+    @endif
     </table>
     </form>
 </div>

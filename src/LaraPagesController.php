@@ -281,6 +281,8 @@ class LaraPagesController extends Controller
         $this->validate($request,$this->validationRules());
         # Update the row width checkInput for missing fields and NULL values
         $row=$model::create($this->checkInput($model, $request->input()));
+        # Update the pivot table(s) when there is a belongToMany
+        $this->updatePivot($row, $request);
         # If pagesAdmin uses sortable set sort field to the id, since id is also the highest value sort could ever be
         if (isset($model->pagesAdmin['sortable'])) {
             $col=$model->pagesAdmin['sortable'];
@@ -322,6 +324,21 @@ class LaraPagesController extends Controller
         $model=$this->fetchModel($modelId);
         # Fetch the row
         $row=$model::findOrFail($id);
+
+        $many=false;
+        # First check if there is a belongsToMany relation set in the first place
+        if (isset($this->model->pagesAdmin['belongsToMany'])) {
+            # Initialize the $many array
+            $many=[];
+            # Walk thru each belongsToMany item
+            foreach($this->model->pagesAdmin['belongsToMany'] as $field=>$options) {
+                # Fetch the options
+                list($remoteModel, $method) = explode(',', $options);
+                # Walk thru the related items and add the ids to the $many array
+                foreach($row->$method()->get() as $relatedItem)
+                    $many['many_'.str_slug($field).'_'.$relatedItem->id]=$relatedItem->id;
+            }
+        }
         # We want the original values and not the auto defaults from the accessors
         if (isset($model->pagesAdmin['accessors']) && !$model->pagesAdmin['accessors'])
             $row=$row->getOriginal();
@@ -332,6 +349,12 @@ class LaraPagesController extends Controller
                 unset($row[$field]);
             elseif ($this->isPassword($field))
                 $row[$field]='********';
+        
+        # If there is a $many array merge it with the row
+        if (is_array($many)) 
+            $row=array_merge($row,$many);
+            
+        # Return the row data
         return $row;
     }
     
@@ -356,6 +379,25 @@ class LaraPagesController extends Controller
         return $rules;
     }
     
+    # Update the pivot table(s) when there is a belongToMany
+    public function updatePivot($row, $request)
+    {
+        # First check if there is a belongsToMany relation set in the first place
+        if (isset($this->model->pagesAdmin['belongsToMany'])) {
+            # Walk thru each belongsToMany item
+            foreach($this->model->pagesAdmin['belongsToMany'] as $field=>$options) {
+                # Fetch the options
+                list($remoteModel, $method) = explode(',', $options);
+                # Get the values from the checkboxes
+                $values=$request->input('many_'.str_slug($field));
+                # If none checked we still need an empty array to sync
+                if (empty($values)) $values=[];
+                # Sync the pivot table
+                $row->$method()->sync($values);
+            }
+        }
+    }
+    
     # Update the specified resource in storage.
     public function update($modelId, $id, Request $request)
     {
@@ -367,6 +409,8 @@ class LaraPagesController extends Controller
         $row=$model::findOrFail($id);
         # Update the row width checkInput for missing fields and NULL values
         $row->fill($this->checkInput($model,$request->input()))->save();
+        # Update the pivot table(s) when there is a belongToMany
+        $this->updatePivot($row, $request);
         # Give new row html back with ajax based on treeview setting
         if (isset($model->pagesAdmin['treeview']) && $model->pagesAdmin['treeview'])
             echo json_encode(['success'=>$this->treeviewRow($row)]);

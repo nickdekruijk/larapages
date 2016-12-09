@@ -154,6 +154,8 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .editview INPUT,
 .editview TEXTAREA {margin:0;display:block}
 /* .editview INPUT {width:auto;max-width:100%} */
+.editview INPUT.many {float:left;clear:left;margin-top:1px}
+.editview LABEL.many {clear:none;margin:0 0 0 5px}
 
 .editview .header {background-color:#666;padding:0 5px;height:30px;position:fixed;width:100%;z-index:1;top:45px}
 .editview .header BUTTON {display:block;width:auto;float:left;background:#808080;border:0 none;border-radius:5px;color:#fff;margin:5px 5px 0 0;padding:3px 15px 2px;font-size:12px;line-height:15px;font-family:inherit;cursor:pointer}
