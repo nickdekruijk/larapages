@@ -477,7 +477,8 @@ class LaraPagesController extends Controller
     /**
      * Walk thru the pages tree and return the navigation html and set currentPage is found
      *
-     * @return (string)$nav
+     * WARNING: DEPRECIATED!!! WILL BE REMOVED IN 1.0 RELEASE!
+     * Should be done in your Page model, See Page.php in samples
      */
     function walk($parent, $depth, $ids, $url='', $hidden=false) {
         
@@ -518,7 +519,8 @@ class LaraPagesController extends Controller
     /**
      * Raise a 404 error and load our custom 404 message with navigation
      *
-     * @return \Illuminate\Http\Response
+     * WARNING: DEPRECIATED!!! WILL BE REMOVED IN 1.0 RELEASE!
+     * Should be done in your Page model, See Page.php in samples
      */
     static public function raise404()
     {
@@ -530,7 +532,8 @@ class LaraPagesController extends Controller
     /**
      * Parse the pages tree find the currentPage and return navigation html
      *
-     * @return \Illuminate\Http\Response
+     * WARNING: DEPRECIATED!!! WILL BE REMOVED IN 1.0 RELEASE!
+     * Should be done in your Page model, See Page.php in samples
      */
     public function parse($any, Request $request)
     {
