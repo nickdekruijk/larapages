@@ -15,8 +15,7 @@ class Page extends Model
         'index'=>'title,id',                        # Columns to show in listview
         'active'=>'active',                         # Boolean type column that determines if page is active or not
         'sortable'=>'sort',                         # Data can be sorted by dragging, store values in 'sort' column
-        'orderBy'=>'sort',                          # Data is ordered by this column
-        'orderDesc'=>false,                         # Order descending, true or false. If false or doesn't exist ascending is used
+        'orderBy'=>'sort',                          # Data is ordered by this column at for descending order you can use something like 'date DESC'
         'treeview'=>'parent',                       # Items can be shown in a treeview, 'parent' column determines parent/child relation
         'expanded'=>3,                              # When treeview is shown auto expand up to 3 levels
         'validate'=>[                               # Laravel validation rules
