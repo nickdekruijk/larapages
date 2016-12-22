@@ -40,7 +40,7 @@
             ?>
             <td>
             @if ($type=='date' || $type=='datetime')
-            	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" type="date">
+            	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" type="text">
             @elseif ($type=='boolean')
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" value="1" type="checkbox">
             @elseif ($type=='radio')
