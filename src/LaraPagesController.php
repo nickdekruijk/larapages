@@ -342,6 +342,8 @@ class LaraPagesController extends Controller
         # We want the original values and not the auto defaults from the accessors
         if (isset($model->pagesAdmin['accessors']) && !$model->pagesAdmin['accessors'])
             $row=$row->getOriginal();
+        else
+            $row=$row->toArray();
         
         # Only return the fillable fields
         foreach($row as $field=>$value)
