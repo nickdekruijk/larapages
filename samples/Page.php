@@ -21,22 +21,25 @@ class Page extends Model
         'expanded'=>3,                              # When treeview is shown auto expand up to 3 levels
         'validate'=>[                               # Laravel validation rules
             'title'=>'required',
-            'published_at'=>'date',
             'date'=>'date',
         ],
         'accessors'=>false,                         # Disable accessors when editing model. Use this when accessors modify empty columns for example and you want to leave them blank when editing
         'type'=>[                                   # Column types, this determines the model editing view input types. If ommitted default text input is used
             'active'=>'boolean',
-            'published_at'=>'datetime',
-            'url'=>'100',
+            'hidden'=>'boolean',
+            'home'=>'boolean',
+            'title'=>'100',
+            'view'=>'100',
+            'slug'=>'100',
             'html_title'=>'64',
             'description'=>'text',
             'date'=>'date',
             'pictures'=>'media,10',
+            'background'=>'media',
             'body'=>'longtext',
         ],
         'rename'=>[                                 # Rename columns
-            'pictures'=>'Media',
+            'pictures'=>'Picture',
         ],
         'tinymce'=>[                                # List of columns that can contain html and should be edited with TinyMCE
             'body'=>'tinymce options',
@@ -46,14 +49,17 @@ class Page extends Model
     # Fillable columns, also used by PagesAdminController to build the form so the order matters
     protected $fillable = [
         'active',
-        'published_at',
+        'hidden',
+        'home',
         'title',
+        'view',
         'head',
         'html_title',
-        'url',
+        'slug',
         'description',
         'date',
-        'picture',
+        'pictures',
+        'background',
         'body',
     ];
     
@@ -90,26 +96,26 @@ class Page extends Model
         return $value;
     }
     
-    # If url is empty create url based on title
-    public function getUrlAttribute($value)
+    # If slug is empty create slug based on title
+    public function getSlugAttribute($value)
     {
-        # If url = / then it's actually an empty route
+        # If slug = / then it's actually an empty route
         if ($value=='/') return '';
         
-        # No value so create nicely formatted url from title
+        # No value so create nicely formatted slug from title
         if (!$value) $value=str_slug($this->title);
 
         return $value;
     }
 
-    # Determine fullUrl by include the parent url(s)
+    # Determine fullUrl by include the parent slug(s)
     public function getFullUrlAttribute()
     {
         if ($this->parent>0) {
             $parent=Page::findOrFail($this->parent);
-            return $parent->fullUrl.'/'.$this->url;
+            return $parent->fullUrl.'/'.$this->slug;
         } else
-            return $this->url;
+            return $this->slug;
     }
 
     # If picture is empty return first picture from pictures column
@@ -160,10 +166,10 @@ class Page extends Model
             # Add page to navigation html and add active class when needed
              if (!$page->toArray()['hidden'] || $unhide) {
                 $nav.=' <li class="'.($ids[$depth]==$page->url?'active':'').($page->toArray()['hidden']?' hidden':'').'">';
-                $nav.='<a href="'.($url.$page->url).'">'.$page->title.'</a>';
+                $nav.='<a href="'.($url.$page->slug).'">'.$page->title.'</a>';
              }
             # Check if the page has subpages and add them
-            $nav.=Page::walk($page->id, $depth+1, $ids, $url.$page->url.'/', $page->toArray()['hidden'] || $hidden);
+            $nav.=Page::walk($page->id, $depth+1, $ids, $url.$page->slug.'/', $page->toArray()['hidden'] || $hidden);
 //            if (isset($walk[1]) && $walk[1]) $currentPage=$walk[1];
             
             # Finalize navigation html
