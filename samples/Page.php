@@ -161,11 +161,11 @@ class Page extends Model
         
         foreach($pages as $page) {
             # Set currentPage if it's the one but only if $depth equals the actual amount of ids
-            if ($ids[$depth]==$page->url && $depth==count($ids)-1) $this->currentPage=$page;
+            if ($ids[$depth]==$page->slug && $depth==count($ids)-1) $this->currentPage=$page;
             
             # Add page to navigation html and add active class when needed
              if (!$page->toArray()['hidden'] || $unhide) {
-                $nav.=' <li class="'.($ids[$depth]==$page->url?'active':'').($page->toArray()['hidden']?' hidden':'').'">';
+                $nav.=' <li class="'.($ids[$depth]==$page->slug?'active':'').($page->toArray()['hidden']?' hidden':'').'">';
                 $nav.='<a href="'.($url.$page->slug).'">'.$page->title.'</a>';
              }
             # Check if the page has subpages and add them
