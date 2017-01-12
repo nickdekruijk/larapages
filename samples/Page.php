@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Request;
 
 class Page extends Model
 {
@@ -130,6 +131,50 @@ class Page extends Model
     {
         $page=new Page;
         return $page->walk();
+    }
+
+    # Placeholder for currentPage set bij walk() method
+    public $currentPage=false;
+
+    /**
+     * Walk thru the pages tree and return the navigation html and set currentPage is found
+     *
+     * @return (string)$nav
+     */
+    public function walk($parent=null, $depth=0, $ids=false, $url='/', $hidden=false, $unhide=false) {
+        # The id might not exist if it's the domain root for example
+        if (!isset($ids[$depth])) $ids[$depth]='';
+        
+        # Fetch all pages
+        $pages = \App\Page::parent($parent)->get();
+        # Return if no pages found to prevent empty navigation <ul></ul>
+        if (!count($pages)) return;
+
+        # Create the navigation html
+        $nav = '<ul class="nav'.$depth.'">';
+        
+        foreach($pages as $page) {
+            # Set currentPage if it's the one but only if $depth equals the actual amount of ids
+            if ($ids[$depth]==$page->url && $depth==count($ids)-1) $this->currentPage=$page;
+            
+            # Add page to navigation html and add active class when needed
+             if (!$page->toArray()['hidden'] || $unhide) {
+                $nav.=' <li class="'.($ids[$depth]==$page->url?'active':'').($page->toArray()['hidden']?' hidden':'').'">';
+                $nav.='<a href="'.($url.$page->url).'">'.$page->title.'</a>';
+             }
+            # Check if the page has subpages and add them
+            $nav.=Page::walk($page->id, $depth+1, $ids, $url.$page->url.'/', $page->toArray()['hidden'] || $hidden);
+//            if (isset($walk[1]) && $walk[1]) $currentPage=$walk[1];
+            
+            # Finalize navigation html
+            if (!$page->toArray()['hidden'])
+                $nav.='</li>';
+        }
+        
+        # Finalize navigation html and return it
+        $nav.='</ul>';
+        if (!$hidden)
+            return $nav;
     }
 
     /**
