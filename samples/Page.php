@@ -21,7 +21,7 @@ class Page extends Model
         'expanded'=>3,                              # When treeview is shown auto expand up to 3 levels
         'validate'=>[                               # Laravel validation rules
             'title'=>'required',
-            'date'=>'date',
+            'date'=>'date|nullable',
         ],
         'accessors'=>false,                         # Disable accessors when editing model. Use this when accessors modify empty columns for example and you want to leave them blank when editing
         'type'=>[                                   # Column types, this determines the model editing view input types. If ommitted default text input is used
