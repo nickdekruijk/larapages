@@ -54,9 +54,12 @@
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" type="password">
             @elseif ($type=='join') 
                 <select id="field_{{ $field }}" class="{{ $type }}" name="{{ $field }}">
-                    <?php $option=explode(',',$option) ?>
+                    <?php 
+                        $option=explode(',', $option);
+                        $scope=isset($option[2])?$option[2]:false;
+                    ?>
                     <option value=""></option>
-                    @foreach((new $option[0])->get() as $opt)
+                    @foreach($scope?(new $option[0])->$scope()->get():(new $option[0])->orderBy($option[1])->get() as $opt)
                     <option value="{{ $opt['id'] }}">{{ $opt[$option[1]] }}</option>
                     @endforeach
                 </select>
