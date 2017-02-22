@@ -76,11 +76,24 @@ class LaraPagesController extends Controller
 		    if (!is_array($user)) 
 		    	$user=['password' => $user];
 		    if (!isset($user['username'])) $user['username']=$username;
-		    if ($request->username==$user['username'] && password_verify($request->password,$user['password'])) {
+		    if ($request->username==$user['username'] && password_verify($request->password, $user['password'])) {
 				session(['larapages_user' => $user]);
 				return redirect('/'.config('larapages.adminpath'));
 			}
 	    }
+	    if (config('larapages.userModel.model')) {
+    	    $model=config('larapages.userModel.model');
+    	    $users=new $model;
+    	    foreach($users->all() as $user)
+    		    if ($request->username==$user[config('larapages.userModel.username', 'email')] && password_verify($request->password, $user[config('larapages.userModel.password', 'password')])) {
+    				session(['larapages_user' => [
+        				'username' => $request->username,
+        				'name' => $user[config('larapages.userModel.name', 'name')],
+    				]]);
+    				return redirect('/'.config('larapages.adminpath'));
+    			}
+	    }
+	    
 		return back()->with(['username'=>$request->username, 'error'=>'Invalid username and/or password']);
     }
     

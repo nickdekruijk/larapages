@@ -79,9 +79,29 @@ return [
 	    
     'users' => [
 	    'admin' => password_hash(env('LARAPAGES_ADMIN_PASSWORD'), PASSWORD_BCRYPT),
-	    'user' => false,
+/*
+	    'nick' => [
+            'password' => password_hash(env('LARAPAGES_ADMIN_PASSWORD'), PASSWORD_BCRYPT),
+            'name' => 'Nick de Kruijk',
+	    ],
+*/
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | userModel
+    |--------------------------------------------------------------------------
+    |
+    | To read the users from a database you can specify a model here.
+    |
+    */
+
+    'userModel' => [
+        'model' => 'App\User',      # The model to use, default null
+        'username' => 'email',      # Use this column as username, default 'email'
+        'password' => 'password',   # Use this column for the password, default 'password'
+        'name' => 'name',           # Use this column for the name, default 'name'
+    ],
 
     /*
     |--------------------------------------------------------------------------
