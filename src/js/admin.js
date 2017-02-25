@@ -75,6 +75,28 @@ function lp_listviewEvents(id) {
         return false;
     });
     
+    // Show/hide search field
+    $('.listview .searchbutton').click(function() {
+        $('.listview #search').toggleClass('show').val('').focus().change();
+    });
+    
+    // Hide listview items not matching the search value
+    $('.listview #search').change(function() {
+        var search=$('.listview #search').val().toUpperCase();
+        $('.listview LI, .listview TR').each(function() {
+            var t=$(this).text().toUpperCase();
+            if (t.indexOf(search)!==-1) 
+                $(this).removeClass('hidden');
+            else
+                $(this).addClass('hidden');
+            console.log(t,search,t.indexOf(search))
+        });
+    });
+    // Let keyup trigger change too
+    $('.listview #search').keyup(function() {
+        $('.listview #search').change();
+    });
+    
     // Delete a listview item
     $('.listview .delete').click(function() {
         lp_listDestroy(this); 
