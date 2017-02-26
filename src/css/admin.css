@@ -67,7 +67,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 
 .icondelete {width:14px;height:14px;background-size:14px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAQAAADYBBcfAAAAtElEQVR4AZ2VuaGGIAyAMwGVO9ExgwMwCNvQUrIFHZ0r0H7/fUeeL5+VSg5yyjc4AolCZzDoFBIBJzNYiFQ0KpFFdPBkZmS8JrbS+IvG+iu2cYTtQxRP4ygN/wpJ5j/ke5iIvCF8on6Nt7zV9wOiiP58rTghzA/tKAtCmutXxSAJBXTRiRgUoaMgb49KFwbMRHcYdkG7q+bgmNNhLgBryZmL3N5W9ka2jw77sLKPR/NANqyAE7J5sj1gEJheAAAAAElFTkSuQmCC)}
 
-.iconplus {width:16px;height:16px;border-radius:16px;background-color:rgba(0,0,0,0.4);text-align:center;line-height:15px}
+.iconplus {width:16px;height:16px;border-radius:5px;background-color:rgba(0,0,0,0.4);text-align:center;line-height:15px}
 .iconplus:before {content:'';position:absolute;width:2px;height:10px;background:#fff;margin:3px 0 0 -1px}
 .iconplus:after {content:'';position:absolute;width:10px;height:2px;background:#fff;margin:7px 0 0 -5px}
 .iconplus:hover {background-color:rgba(0,0,0,0.6)}
