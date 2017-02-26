@@ -88,10 +88,11 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .listview .toggle:hover {background-color:#9a9a9a}
 .listview.hidden .header {height:100%}
 
-.listview #search {display:block;position:absolute;margin:0;left:80%;padding:0px 10px;top:4px;height:21px;right:20px;z-index:9;background-color:#808080;border:0 none;outline:none;font-family:inherit;font-size:inherit;color:#fff;border-radius:25px;transition:all .25s;opacity:0}
-.listview #search.show {left:3px;opacity:1}
-.listview .searchbutton {position:absolute;top:5px;right:20px;width:20px;height:20px;background-color:#808080;border-radius:20px;color:#fff;font-size:18px;transform:rotate(-45deg);text-align:center;line-height:17px;z-index:10}
-.listview .searchbutton:hover {cursor:pointer;background-color:#9a9a9a}
+.listview #search {display:block;position:absolute;margin:0;width:41px;padding:0px 7px;top:5px;height:20px;right:20px;background-color:#808080;border:0 none;outline:none;font-family:inherit;font-size:inherit;color:#fff;border-radius:5px;transition:width .25s}
+.listview #search.show {width:calc(100% - 37px)}
+.listview .searchclose {display:none;position:absolute;right:23px;z-index:10;border-radius:3px;background-color:#9a9a9a;color:#fff;width:14px;height:14px;text-align:center;font-size:11px;line-height:14px;cursor:pointer;top:8px}
+.listview .searchclose.show {display:block}
+.listview .searchclose:hover {background-color:#aaa}
 .listview LI.hidden,
 .listview TR.hidden {display:none}
 

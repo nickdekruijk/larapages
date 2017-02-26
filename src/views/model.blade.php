@@ -8,7 +8,7 @@
 <div class="listview noselect" data-model="{{ $modelId }}" data-expanded="<?=isset($model->pagesAdmin['expanded']) && $model->pagesAdmin['expanded']>0?$model->pagesAdmin['expanded']:''?>">
     <div class="header">
         <span class="toggle"></span>
-        <span class="searchbutton">&#9906;</span>
+        <span class="searchclose">&times;</span>
         <input placeholder="Search" id="search">
         <h2>{{ isset($model->pagesAdmin['nicename'])?$model->pagesAdmin['nicename']:ucfirst(str_plural($modelId)) }}</h2>
     </div>

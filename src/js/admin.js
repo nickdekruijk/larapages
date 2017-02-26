@@ -75,9 +75,15 @@ function lp_listviewEvents(id) {
         return false;
     });
     
-    // Show/hide search field
-    $('.listview .searchbutton').click(function() {
-        $('.listview #search').toggleClass('show').val('').focus().change();
+    // Minimize search field
+    $('.listview .searchclose').click(function() {
+        $('.listview #search').val('').change();
+        $('.listview .searchclose, .listview #search').removeClass('show');
+    });
+    
+    // Expand search field
+    $('.listview #search').focus(function() {
+        $('.listview .searchclose, .listview #search').addClass('show');
     });
     
     // Hide listview items not matching the search value
@@ -89,7 +95,6 @@ function lp_listviewEvents(id) {
                 $(this).removeClass('hidden');
             else
                 $(this).addClass('hidden');
-            console.log(t,search,t.indexOf(search))
         });
     });
     // Let keyup trigger change too
