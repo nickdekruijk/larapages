@@ -125,6 +125,9 @@ function lp_listviewExpand() {
 
 $(document).ready(function() {
     lp_sizeEditor();
+    $(window).resize(function() {
+        lp_sizeEditor();
+    })
 
     // Make sure Ajax calls always give the right token
     $.ajaxSetup({

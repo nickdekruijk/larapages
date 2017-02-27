@@ -96,7 +96,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 .listview LI.hidden,
 .listview TR.hidden {display:none}
 
-.listview {position:fixed;left:0;bottom:0;top:45px;border-right:1px solid #666;padding:0;background-color:#fbfaf8;line-height:1.0em;min-width:150px;width:auto;overflow:hidden;overflow-y:auto}
+.listview {position:fixed;left:0;bottom:0;top:45px;border-right:1px solid #666;padding:0;background-color:#fbfaf8;line-height:1.0em;min-width:150px;width:auto;overflow:hidden;overflow-y:auto;max-width:40vw}
 .listview UL {padding:0px;margin:0;display:block}
 .listview>UL {margin-top:30px}
 .listview LI {padding:0 0 0 0;margin:0;display:block}
