@@ -32,32 +32,32 @@ class LaraPagesController extends Controller
                 $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a>'.$model.'</a>';
                 $this->nav.='<ul class="nav1">';
                 foreach($title as $model2=>$title2)
-                    $this->nav.='<li class="'.($model2==$this->modelId?'active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model2.'">'.$title2.'</a></li>';
+                    $this->nav.='<li class="'.($model2==$this->modelId?'active':'').'"><a href="'.url(config('larapages.adminpath').'/model/'.$model2).'">'.$title2.'</a></li>';
                 $this->nav.='</ul>';
                 $this->nav.='</li>';
             } else
-                $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/model/'.$model.'">'.$title.'</a></li>';
+                $this->nav.='<li class="'.($i==1?'start':'').($i==count(config('larapages.models'))?' end':'').($model==$this->modelId?' active':'').'"><a href="'.url(config('larapages.adminpath').'/model/'.$model).'">'.$title.'</a></li>';
         }
         
         # Show Media button if needed
         if (config('larapages.media'))
-            $this->nav.='<li class="start end'.($this->modelId=='media'?' active':'').'"><a href="/'.config('larapages.adminpath').'/media/">'.config('larapages.media.nicename', 'Media').'</a></li>';
+            $this->nav.='<li class="start end'.($this->modelId=='media'?' active':'').'"><a href="'.url(config('larapages.adminpath').'/media/').'">'.config('larapages.media.nicename', 'Media').'</a></li>';
            
         # Show Report button if needed
         if (config('larapages.reports')) {
             $this->nav.='<li class="start end logout'.($this->modelId=='reports'?' active':'').'"><a>'.config('larapages.reports.nicename', 'Reports').'</a>';
             $this->nav.='<ul class="nav1">';
             foreach(config('larapages.reports.queries') as $name=>$query)
-                $this->nav.='<li class="'.($name==$this->modelId?'active':'').'"><a href="/'.config('larapages.adminpath').'/reports/'.str_slug($name).'">'.$name.'</a></li>';
+                $this->nav.='<li class="'.($name==$this->modelId?'active':'').'"><a href="'.url(config('larapages.adminpath').'/reports/'.str_slug($name)).'">'.$name.'</a></li>';
             $this->nav.='</ul>';
             $this->nav.='</li>';
         }
         
         # Show logout button
-        $this->nav.='<li class="right end logout"><a href="/'.config('larapages.adminpath').'/login/">Logout</a></li>';
+        $this->nav.='<li class="right end logout"><a href="'.url(config('larapages.adminpath').'/login/').'">Logout</a></li>';
         
         # Show dashboard button with users name
-        $this->nav.='<li class="right start'.(!$this->modelId?' active':'').'"><a href="/'.config('larapages.adminpath').'/">'.LaraPagesAuth::user()->name.'</a></li>';
+        $this->nav.='<li class="right start'.(!$this->modelId?' active':'').'"><a href="'.url(config('larapages.adminpath')).'">'.LaraPagesAuth::user()->name.'</a></li>';
         
         $this->nav.='</ul>';
         return $this->nav;
