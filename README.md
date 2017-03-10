@@ -19,7 +19,7 @@ Add the larapages middleware to the `$routeMiddleware` array in `app/Http/Kernel
 ```
 
 Publish the css/js/config with  
-`php artisan vendor:publish` the first time or `php artisan vendor:publish --tag=public --force` after a `composer update`.
+`php artisan vendor:publish` the first time or `php artisan vendor:publish --tag=public --force --provider="NickDeKruijk\LaraPages\LaraPagesServiceProvider"` after a `composer update`.
 
 ## Configuration
 After installation (if you did `php artisan vendor:publish`) a default config file called `larapages.php` will be available in your Laravel `app/config` folder.
