@@ -127,7 +127,7 @@ class LaraPagesController extends Controller
                 break;
             }
         if (!$report) abort(404);
-        $set = DB::select('SET SESSION group_concat_max_len = 1024000');
+        if (env('DB_CONNECTION')=='mysql') $set = DB::select('SET SESSION group_concat_max_len = 1024000');
         $data = DB::select($query);
         if ($array)
             return $data;
