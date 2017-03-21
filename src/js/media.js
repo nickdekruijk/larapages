@@ -9,7 +9,7 @@ function lp_getFolders(id) {
         folder+='/'+$('LI[data-id="'+str+'"]>DIV>SPAN:eq(1)').text();
         str+='-';
     }
-    $('#uploadfile').fileupload('option','url','/'+lp_adminpath+'/media/store?folder='+encodeURIComponent(folder));
+    $('#uploadfile').fileupload('option','url',lp_adminpath+'/media/store?folder='+encodeURIComponent(folder));
     return folder;
 }
 
@@ -60,7 +60,7 @@ function lp_show(modelId,id) {
     // Load items with Ajax GET
     $.ajax({
         cache:'false',
-        url:'/'+lp_adminpath+'/'+modelId+'/'+id,
+        url:lp_adminpath+'/'+modelId+'/'+id,
         data:'folder='+lp_getFolders(id),
         statusCode: {
             401: lp_401,
@@ -111,7 +111,7 @@ function lp_newFolder() {
         cache:'false',
         dataType: 'json',
         method:'post',
-        url:'/'+lp_adminpath+'/media/newfolder',
+        url:lp_adminpath+'/media/newfolder',
         data:'folder='+encodeURIComponent($('.editview .header H2>SPAN').text()+'/'+folder),
         statusCode: {
             401: lp_401,
@@ -146,7 +146,7 @@ function lp_listDestroy(target) {
         if (confirm('Are you sure you want to delete '+folder+'?')) {
             $.ajax({
                 method:'post',
-                url:'/'+lp_adminpath+'/media/destroyFolder', 
+                url:lp_adminpath+'/media/destroyFolder', 
                 data:'folder='+folder,
                 cache:'false',
                 statusCode: {
@@ -183,7 +183,7 @@ function lp_destroyMedia(target) {
                 method:'post',
                 data: 'file='+encodeURIComponent(title)+'&folder='+encodeURIComponent($('.editview .header H2>SPAN').text()),
                 cache:'false',
-                url:'/'+lp_adminpath+'/media/destroy',
+                url:lp_adminpath+'/media/destroy',
                 success: function(data,status) {
                     if (data) 
                         alert(data);
@@ -216,7 +216,7 @@ function lp_editTitle(target) {
                 method:'post',
                 data: 'title='+encodeURIComponent(title)+'&file='+encodeURIComponent($(this).data('old'))+'&folder='+encodeURIComponent($('.editview .header H2>SPAN').text()),
                 cache:'false',
-                url:'/'+lp_adminpath+'/media/rename',
+                url:lp_adminpath+'/media/rename',
                 success: function(data,status) {
                     if (data) 
                         alert(data);
@@ -266,7 +266,7 @@ $(document).ready(function() {
     })
     $('#uploadfile').fileupload({
         dataType: 'json',
-        url: '/'+lp_adminpath+'/media/store?folder=',
+        url: lp_adminpath+'/media/store?folder=',
 //         dropZone: $('.editview'),
         add: function (e, data) {
             var tpl = $('<li><div></div><span class="button"></span>'+data.files[0].name+' (<span class="message">'+lp_formatFileSize(data.files[0].size)+', <span class="perc">0</span>%</span>)</li>');

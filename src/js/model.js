@@ -6,7 +6,7 @@ function lp_show(modelId,id) {
     // Load items with Ajax GET
     $.ajax({
         cache:'false',
-        url:'/'+lp_adminpath+'/model/'+modelId+'/'+id,
+        url:lp_adminpath+'/model/'+modelId+'/'+id,
         statusCode: {
             401: lp_401,
         },
@@ -66,7 +66,7 @@ function lp_update(modelId,id) {
         method:'post',
         dataType:'json',
         cache:'false',
-        url:'/'+lp_adminpath+'/model/'+modelId+'/'+action,
+        url:lp_adminpath+'/model/'+modelId+'/'+action,
         statusCode: {
             401: lp_401,
 //            500: lp_500,
@@ -137,7 +137,7 @@ function lp_destroy(modelId,id) {
                 method:'post',
                 dataType:'json',
                 cache:'false',
-                url:'/'+lp_adminpath+'/model/'+modelId+'/'+id+'/destroy',
+                url:lp_adminpath+'/model/'+modelId+'/'+id+'/destroy',
                 success: function(data,status) {
                     $('.listview .active').detach();
                     lp_sizeEditor();
@@ -160,7 +160,7 @@ function lp_changeParent(modelId,id,parent,oldparent) {
         method:'post',
         cache:'false',
         data: 'parent='+parent+'&oldparent='+oldparent,
-        url:'/'+lp_adminpath+'/model/'+modelId+'/'+id+'/changeparent',
+        url:lp_adminpath+'/model/'+modelId+'/'+id+'/changeparent',
         statusCode: {
             401: lp_401,
             500: lp_500,
@@ -195,7 +195,7 @@ function lp_saveSorting(modelId,parent) {
         method:'post',
         cache:'false',
         data: 'ids='+ids,
-        url:'/'+lp_adminpath+'/model/'+modelId+'/'+parent+'/sort',
+        url:lp_adminpath+'/model/'+modelId+'/'+parent+'/sort',
         statusCode: {
             401: lp_401,
             500: lp_500,
@@ -272,7 +272,7 @@ function lp_addMedia(target) {
     else
         lp_mediaMax=1;
     lp_media=$(lp_mediaTarget).parent().next('TEXTAREA').val();
-    lp_modalFrame('/'+lp_adminpath+'/media/mini');
+    lp_modalFrame(lp_adminpath+'/media/mini');
 }
 
 $(document).ready(function() {

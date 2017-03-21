@@ -110,7 +110,7 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="{{asset('/vendor/larapages/js/nestedSortable.min.js')}}"></script>
     <script src="{{asset('/vendor/larapages/js/admin.js')}}"></script>
-    <script>lp_adminpath="{{ config('larapages.adminpath') }}"</script>
+    <script>lp_adminpath="{{ url(config('larapages.adminpath')) }}"</script>
     <script>lp_mediafolder="{{ config('larapages.media.folder') }}"</script>
     <script src="{{asset('/vendor/larapages/js/model.js')}}"></script>
     <script>
@@ -125,7 +125,7 @@
 			file_browser_callback: function(input_id, input_value, type, win){
 				lp_mediaTarget=input_id;
 				lp_media=''; //input_value;
-				lp_modalFrame('/'+lp_adminpath+'/media/mini');
+				lp_modalFrame(lp_adminpath+'/media/mini');
 				return false;
 			},
 			spellchecker_rpc_url: 'spellchecker.php',
