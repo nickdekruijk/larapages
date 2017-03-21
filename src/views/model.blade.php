@@ -108,11 +108,11 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script src="/vendor/larapages/js/nestedSortable.min.js"></script>
-    <script src="/vendor/larapages/js/admin.js"></script>
+    <script src="{{asset('/vendor/larapages/js/nestedSortable.min.js')}}"></script>
+    <script src="{{asset('/vendor/larapages/js/admin.js')}}"></script>
     <script>lp_adminpath="{{ config('larapages.adminpath') }}"</script>
     <script>lp_mediafolder="{{ config('larapages.media.folder') }}"</script>
-    <script src="/vendor/larapages/js/model.js"></script>
+    <script src="{{asset('/vendor/larapages/js/model.js')}}"></script>
     <script>
         tinymce.init({
     	    selector:'.tinymce',

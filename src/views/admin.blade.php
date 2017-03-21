@@ -7,7 +7,7 @@
 	<meta name="robots" content="NOINDEX, NOFOLLOW">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable = no">
 	<title>{{ str_replace('www.','',$_SERVER['HTTP_HOST']) }} - Admin @yield('title')</title>
-	<link href="/vendor/larapages/css/admin.css" rel="stylesheet">
+	<link href="{{asset('/vendor/larapages/css/admin.css')}}" rel="stylesheet">
 </head>
 <body>
 @if (isset($admin))
