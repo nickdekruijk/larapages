@@ -47,6 +47,10 @@
             	<input id="field_{{ $field }}" class="{{ $type }} " name="{{ $field }}" value="1" type="checkbox">
             @elseif ($type=='radio')
             	@foreach (explode('|',$option) as $n=>$value)
+            	<?php
+                	@list($value, $label) = explode(':', $value);
+                	if (!$label) $label = $value;
+                ?>
             	<input id="field_{{ $field }}_{{ $n }}" class="{{ $type }} " name="{{ $field }}" value="{{ $value }}" type="radio">
                 <label class="radio" for="field_{{ $field }}_{{$n}}">{{ str_replace('_',' ',ucfirst($value)) }}</label>
                 @endforeach
