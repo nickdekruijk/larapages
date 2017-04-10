@@ -364,7 +364,7 @@ class LaraPagesController extends Controller
                 unset($row[$field]);
             elseif ($this->isPassword($field))
                 $row[$field]='********';
-            elseif (isset($model->pagesAdmin['type'][$field]) && $model->pagesAdmin['type'][$field]=='date') # Remove time from date fields
+            elseif (isset($model->pagesAdmin['type'][$field]) && $model->pagesAdmin['type'][$field]=='date' && $row[$field]) # Remove time from date fields
                 $row[$field]=substr($value,0,10);
         
         # If there is a $many array merge it with the row
