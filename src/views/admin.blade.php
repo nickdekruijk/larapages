@@ -20,7 +20,7 @@
     </header>
 @endif
 	@yield('content')
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     @yield('scripts')
 </body>
 </html>
