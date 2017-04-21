@@ -19,9 +19,11 @@ Add the larapages middleware to the `$routeMiddleware` array in `app/Http/Kernel
 ```
 
 After installing for the first time publish the css/js/config with
+
 `php artisan vendor:publish --provider="NickDeKruijk\LaraPages\LaraPagesServiceProvider"`
 
 After a `composer update` publish the public assets again with
+
 `php artisan vendor:publish --tag=public --force --provider="NickDeKruijk\LaraPages\LaraPagesServiceProvider"`
 
 ## Configuration
