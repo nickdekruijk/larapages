@@ -31,6 +31,7 @@ function lp_show(modelId,id) {
                 }
                 // Simulate a password blur so passwords are shown as ********
                 $('.editview INPUT[type=password]').blur();
+                $('.editview .templates').change();
             }
         },
         error: function(xhr,status,error) {
@@ -275,6 +276,18 @@ function lp_addMedia(target) {
     lp_modalFrame(lp_adminpath+'/media/mini');
 }
 
+function lp_templateChange(target) {
+    var hide = $(target).children().filter(':selected').data('hide');
+    $('.hiddenByTemplate').removeClass('hiddenByTemplate');
+    if (hide) {
+        hide = hide.split(',');
+        for (i in hide) {
+            console.log('#field_'+hide[i]);
+            $('#field_'+hide[i]).parent().parent().addClass('hiddenByTemplate');
+        }
+    }
+}
+
 $(document).ready(function() {
 
     lp_listviewEvents(false);
@@ -295,6 +308,9 @@ $(document).ready(function() {
         timeFormat: 'HH:mm:ss',
     });
     
+    $('.editview .templates').change(function() {
+        lp_templateChange(this);
+    })
     $('.editview .media .add').click(function() {
         lp_addMedia(this);
     });

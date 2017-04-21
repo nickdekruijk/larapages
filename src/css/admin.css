@@ -50,6 +50,7 @@ FORM INPUT[type=submit]:hover {background-color:#808080}
 
 FORM INPUT.error {border:1px solid #f99;background-color:#fee}
 FORM SELECT.join {width:auto}
+FORM SELECT.templates {width:auto}
 
 HEADER.mini {display:none}
 .listview.mini {top:0}
@@ -148,6 +149,7 @@ UL.success  {border-color:#3c3;background-color:#efe;color:#090}
 
 .editview {position:fixed;right:0;bottom:0;top:45px;overflow:auto;background-color:#eee}
 .editview TABLE {border-spacing:0;border-collapse:collapse;width:100%;margin-top:34px}
+.editview TABLE TR.hiddenByTemplate {display:none}
 .editview TABLE TD:first-child {width:1px;white-space:nowrap}
 .editview TABLE TD {position:relative;padding:1px 5px}
 .editview FORM {padding:0 0 4px 0}

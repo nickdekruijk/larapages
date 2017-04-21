@@ -71,6 +71,13 @@
                     <option value="{{ $opt['id'] }}">{{ $opt[$option[1]] }}</option>
                     @endforeach
                 </select>
+            @elseif ($type=='templates') 
+                <select id="field_{{ $field }}" class="templates" name="{{ $field }}">
+                    <option value=""></option>
+                    @foreach($model->pagesAdmin['templates'] as $template=>$options)
+                    <option value="{{ $template }}" data-hide="{{ empty($options['hide'])?'':$options['hide'] }}">{{ $options['name'] }}</option>
+                    @endforeach
+                </select>
             @elseif ($type=='media') 
                 <div class="media" data-max="{{ $option }}"><div></div><span class="add iconplus"></span></div>
             	<textarea id="field_{{ $field }}" class="{{ $type }} {{ $option>1?'multiple':'single' }}" name="{{ $field }}"></textarea>
