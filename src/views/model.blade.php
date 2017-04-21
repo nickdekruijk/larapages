@@ -35,6 +35,8 @@
                 $type=explode(',',isset($model->pagesAdmin['type'][$field])?$model->pagesAdmin['type'][$field]:false,2);
                 if (isset($type[1])) $option=$type[1]; else $option=false;
                 $type=$type[0];
+                if (!$type and isset($model->getCasts()[$field]))
+                    $type = $model->getCasts()[$field];
                 if (is_numeric($type) && $type>0) {
                     $maxlength=$type; 
                     $type='string';

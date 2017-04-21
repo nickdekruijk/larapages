@@ -270,7 +270,7 @@ class LaraPagesController extends Controller
         foreach ($model->getFillable() as $field) {
             if (!isset($input[$field]) || !$input[$field]) {
                 # If it's boolean we should set to 0 and not null
-                if (isset($model->pagesAdmin['type'][$field]) && $model->pagesAdmin['type'][$field]=='boolean')
+                if ((isset($model->pagesAdmin['type'][$field]) && $model->pagesAdmin['type'][$field]=='boolean') || (isset($model->getCasts()[$field]) && $model->getCasts()[$field]=='boolean'))
                     $input[$field]=0;
                 else
                     $input[$field]=null;
