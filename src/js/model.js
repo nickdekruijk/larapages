@@ -325,6 +325,7 @@ $(document).ready(function() {
         $('.listview .active').removeClass('active');
         $('.editview FORM').trigger('reset');
         $('.editview').removeClass('hidden').addClass('new');
+        $('.editview .templates').change();
         return false;
     })
     $('.editview BUTTON.save').click(function() {
