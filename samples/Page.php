@@ -157,7 +157,7 @@ class Page extends Model
      *
      * @return (string)$nav
      */
-    public function walk($parent = null, $depth = 0, $ids = false, $url = '/', $hidden = false, $unhide = false)
+    public function walk($parent = null, $depth = 0, $ids = false, $url = '/', $hidden = false, $unhide = false, $activeParent = true)
     {
         # The id might not exist if it's the domain root for example
         if (!isset($ids[$depth])) {
@@ -175,18 +175,21 @@ class Page extends Model
         $nav = '<ul class="nav' . $depth . '">';
 
         foreach ($pages as $page) {
-            # Set currentPage if it's the one but only if $depth equals the actual amount of ids
-            if ($ids[$depth] == $page->slug && $depth == count($ids) - 1) {
+            # Set currentPage if it's the one but only if $activeParent is true to prevent page with same slug from different parent
+            if ($ids[$depth] == $page->slug && $activeParent) {
                 $this->currentPage = $page;
+                $active = true;
+            } else {
+                $active = false;
             }
-
+            
             # Add page to navigation html and add active class when needed
             if (!$page->toArray()['hidden'] || $unhide) {
-                $nav .= ' <li class="' . ($ids[$depth] == $page->slug ? 'active' : '') . ($page->toArray()['hidden'] ? ' hidden' : '') . '">';
+                $nav .= ' <li class="' . ($active ? 'active' : '') . ($page->toArray()['hidden'] ? ' hidden' : '') . '">';
                 $nav .= '<a href="' . url($url . $page->slug) . '">' . $page->title . '</a>';
             }
             # Check if the page has subpages and add them
-            $nav .= Page::walk($page->id, $depth + 1, $ids, $url . $page->slug . '/', $page->toArray()['hidden'] || $hidden);
+            $nav .= Page::walk($page->id, $depth + 1, $ids, $url . $page->slug . '/', $page->toArray()['hidden'] || $hidden, $unhide, $active);
 //            if (isset($walk[1]) && $walk[1]) $currentPage=$walk[1];
 
             # Finalize navigation html
