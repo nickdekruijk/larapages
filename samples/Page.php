@@ -183,7 +183,7 @@ class Page extends Model
             # Add page to navigation html and add active class when needed
             if (!$page->toArray()['hidden'] || $unhide) {
                 $nav .= ' <li class="' . ($ids[$depth] == $page->slug ? 'active' : '') . ($page->toArray()['hidden'] ? ' hidden' : '') . '">';
-                $nav .= '<a href="' . ($url . $page->slug) . '">' . $page->title . '</a>';
+                $nav .= '<a href="' . url($url . $page->slug) . '">' . $page->title . '</a>';
             }
             # Check if the page has subpages and add them
             $nav .= Page::walk($page->id, $depth + 1, $ids, $url . $page->slug . '/', $page->toArray()['hidden'] || $hidden);
