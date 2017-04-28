@@ -23,6 +23,9 @@
         <button type="submit" class="save">Save</button>
         <button class="copy">Save a Copy</button>
         <button class="new">New</button>
+        @if (isset($model->pagesAdmin['preview']))
+        <button class="preview" target="_blank" data-href="{{url($model->pagesAdmin['preview'])}}">Preview</button>
+        @endif
         <button class="delete">Delete</button>
         <button class="close">Close</button>
     </div>

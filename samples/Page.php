@@ -20,6 +20,7 @@ class Page extends Model
         'treeview' => 'parent', # Items can be shown in a treeview, 'parent' column determines parent/child relation
         'expanded' => 3, # When treeview is shown auto expand up to 3 levels
         'validate' => [# Laravel validation rules
+        'preview' => '/preview/page/{id}', # Enable preview button, links to this url
         'title' => 'required',
             'date' => 'date|nullable',
         ],

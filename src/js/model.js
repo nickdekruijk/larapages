@@ -336,6 +336,10 @@ $(document).ready(function() {
         lp_update($('.listview').data('model'),-$('.listview .active').data('id'))
         return false;
     })
+    $('.editview BUTTON.preview').click(function() {
+        window.open($(this).data('href').replace('{id}', $('.listview .active').data('id')));
+        return false;
+    })
     $('.editview BUTTON.delete').click(function() {
         lp_destroy($('.listview').data('model'),$('.listview .active').data('id'))
         return false;
