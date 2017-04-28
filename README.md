@@ -48,5 +48,5 @@ Route::get('/preview/page/{id}', function ($id) {
     $page = App\Page::findOrFail($id);
     if (!View::exists($page->view)) $page['view']='detail';
     return view($page->view, compact('page'));
-});
+})->middleware('larapages');
 ```
