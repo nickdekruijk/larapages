@@ -36,3 +36,17 @@ To use the Frontend template and to parse the pages add this to your `routes.php
 Route::get('{any}', '\App\Page@route')->where('any', '(.*)');
 ```
 Feel free to copy the templates to your Laravel `resources/views/vendor/larapages/main` folder and edit them as you like. Or create your own views and set them in the config file.
+
+### Enable Preview button while editing a model
+If you use pagesAdmin['preview'] like this:
+```php
+'preview' => '/preview/page/{id}',          # Enable preview button, links to this url
+```
+you will need a route that enables it. For example add this to your `web.php` or `routes.php`:
+```php
+Route::get('/preview/page/{id}', function ($id) {
+    $page = App\Page::findOrFail($id);
+    if (!View::exists($page->view)) $page['view']='detail';
+    return view($page->view, compact('page'));
+});
+```
