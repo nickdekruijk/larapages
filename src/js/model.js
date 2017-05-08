@@ -282,7 +282,6 @@ function lp_templateChange(target) {
     if (hide) {
         hide = hide.split(',');
         for (i in hide) {
-            console.log('#field_'+hide[i]);
             $('#field_'+hide[i]).parent().parent().addClass('hiddenByTemplate');
         }
     }
