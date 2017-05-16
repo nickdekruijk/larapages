@@ -134,6 +134,7 @@
     	    selector:'.tinymce',
     	    theme: 'modern',
     	    menubar: false,
+    	    branding: false,    	    
     	    paste_as_text: true,
     	    content_css: "{{ asset(isset($model->pagesAdmin['tinymce_css'])?$model->pagesAdmin['tinymce_css']:'/vendor/larapages/css/tinymce.css') }}",
             browser_spellcheck: true,
