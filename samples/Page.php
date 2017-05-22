@@ -211,7 +211,7 @@ class Page extends Model
      * In routes.php / web.php use:
      * Route::get('{any}', '\App\Page@route')->where('any', '(.*)');
      */
-    public function route($any, Request $request)
+    public function route($any = null, Request $request)
     {
         # Start walking the page tree
         $navigationHtml = $this->walk(null, 0, Request::segments());
