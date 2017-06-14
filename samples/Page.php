@@ -19,31 +19,27 @@ class Page extends Model
         'orderBy' => 'sort', # Data is ordered by this column at for descending order you can use something like 'date DESC'
         'treeview' => 'parent', # Items can be shown in a treeview, 'parent' column determines parent/child relation
         'expanded' => 3, # When treeview is shown auto expand up to 3 levels
+//         'preview' => '/preview/page/{id}', # Enable preview button, links to this url. Requires preview route.
         'validate' => [# Laravel validation rules
-        'preview' => '/preview/page/{id}', # Enable preview button, links to this url
-        'title' => 'required',
+            'title' => 'required',
             'date' => 'date|nullable',
         ],
         'accessors' => false, # Disable accessors when editing model. Use this when accessors modify empty columns for example and you want to leave them blank when editing
         'type' => [# Column types, this determines the model editing view input types. If ommitted default text input is used
-        'active' => 'boolean',
-            'hidden' => 'boolean',
-            'home' => 'boolean',
             'title' => '100',
             'view' => '100',
             'slug' => '100',
             'html_title' => '64',
             'description' => 'text',
-            'date' => 'date',
             'pictures' => 'media,10',
             'background' => 'media',
             'body' => 'longtext',
         ],
         'rename' => [# Rename columns
-        'pictures' => 'Picture',
+            'pictures' => 'Picture',
         ],
         'tinymce' => [# List of columns that can contain html and should be edited with TinyMCE
-        'body' => 'tinymce options',
+            'body' => 'tinymce options',
         ],
     ];
 
@@ -69,7 +65,13 @@ class Page extends Model
      *
      * @var array
      */
-    protected $dates = ['date', 'deleted_at', 'published_at'];
+    protected $casts = [
+        'active' => 'boolean',
+        'hidden' => 'boolean',
+        'home' => 'boolean',
+        'date' => 'date',
+        'deleted_at' => 'datetime',
+    ];
 
     # This scope returns only the active pages and in the right order
     public function scopeActiveSorted($query)
