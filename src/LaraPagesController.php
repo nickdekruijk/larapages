@@ -154,7 +154,7 @@ class LaraPagesController extends Controller
         $treeviewRow='<div'.(isset($row->pagesAdmin['active']) && !$row[$row->pagesAdmin['active']]?' class="inactive"':'').'><span></span>';
         # Only add the columns from the index setting
         foreach (explode(',',$row->pagesAdmin['index']) as $index)
-            $treeviewRow.='<span>'.$row[$index].'</span>';
+            $treeviewRow.='<span>'.$this->formatValue($index, $row[$index]).'</span>';
         $treeviewRow.='</div>';
         return $treeviewRow;
     }
@@ -190,6 +190,28 @@ class LaraPagesController extends Controller
         $nav.='</ul>';
         return $nav;
     }
+    
+    # Format the values according to type/casts
+    private function formatValue($field, $value)
+    {
+        $label = isset($this->model->pagesAdmin['rename'][$field]) ? $this->model->pagesAdmin['rename'][$field] : ucfirst(str_replace('_',' ',$field));
+        if ((isset($this->model->pagesAdmin['type'][$field]) && $this->model->pagesAdmin['type'][$field]=='boolean') || (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='boolean')) {
+            $value = $label;
+        }
+        if ((isset($this->model->pagesAdmin['type'][$field]) && $this->model->pagesAdmin['type'][$field]=='date') || (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='date') && $value) {
+            $value = $value->format('Y-m-d');
+        }
+        if ($value && isset($this->model->pagesAdmin['type'][$field])) {
+            $type = explode(',', $this->model->pagesAdmin['type'][$field]);
+            if ($type[0] == 'radio') {
+                foreach (explode('|', $type[1]) as $option) {
+                    @list($option, $label) = explode(':', $option, 2);
+                    if ($option == $value) $value = $label;
+                }
+            }
+        }
+        return $value;
+    }
 
     # Read all data from the model and return html table
     public function table()
@@ -219,7 +241,7 @@ class LaraPagesController extends Controller
                     $value=$row[$sub[0]][$sub[1]];
                 else
                     $value=$row[$index];
-                $nav.='<td>'.$value.'</td>';
+                $nav.='<td>'.$this->formatValue($index, $value).'</td>';
             }
             $nav.='</tr>';
         }
