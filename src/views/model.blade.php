@@ -53,11 +53,11 @@
             @elseif ($type=='radio')
             	@foreach (explode('|',$option) as $n=>$value)
             	<?php
-                	@list($value, $label) = explode(':', $value);
-                	if (!$label) $label = $value;
+                	@list($value, $label) = explode(':', $value, 2);
+                	if (!$label) $label = str_replace('_',' ',ucfirst($value));
                 ?>
             	<input id="field_{{ $field }}_{{ $n }}" class="{{ $type }} " name="{{ $field }}" value="{{ $value }}" type="radio">
-                <label class="radio" for="field_{{ $field }}_{{$n}}">{{ str_replace('_',' ',ucfirst($value)) }}</label>
+                <label class="radio" for="field_{{ $field }}_{{ $n }}">{{ $label }}</label>
                 @endforeach
             @elseif ($type=='text' || $type=='longtext' || $type=='mediumtext')
             	<textarea id="field_{{ $field }}" class="{{ isset($model->pagesAdmin['tinymce'][$field])?'tinymce ':''}}{{ $type }} " name="{{ $field }}" data-tinymce="{{ isset($model->pagesAdmin['tinymce'][$field])?$model->pagesAdmin['tinymce'][$field]:'' }}"></textarea>
