@@ -194,19 +194,28 @@ class LaraPagesController extends Controller
     # Format the values according to type/casts
     private function formatValue($field, $value)
     {
-        $label = isset($this->model->pagesAdmin['rename'][$field]) ? $this->model->pagesAdmin['rename'][$field] : ucfirst(str_replace('_',' ',$field));
-        if ((isset($this->model->pagesAdmin['type'][$field]) && $this->model->pagesAdmin['type'][$field]=='boolean') || (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='boolean')) {
-            $value = $label;
+        # Label to show (either renamed or field name made nice)
+        $label = isset($this->model->pagesAdmin['rename'][$field]) ? $this->model->pagesAdmin['rename'][$field] : ucfirst(str_replace('_', ' ', $field));
+        
+        # If boolean show either label or nothing
+        if (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='boolean') {
+            $value = $value?$label:'';
         }
-        if ((isset($this->model->pagesAdmin['type'][$field]) && $this->model->pagesAdmin['type'][$field]=='date') || (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='date') && $value) {
+        
+        # If date only show year month and date (no more time)        
+        if (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='date' && $value) {
             $value = $value->format('Y-m-d');
         }
+        
+        # Check if field has a specific type setting
         if ($value && isset($this->model->pagesAdmin['type'][$field])) {
             $type = explode(',', $this->model->pagesAdmin['type'][$field]);
+            
             if ($type[0] == 'radio') {
+                # Show the radio button label instead of value if any labels present
                 foreach (explode('|', $type[1]) as $option) {
                     @list($option, $label) = explode(':', $option, 2);
-                    if ($option == $value) $value = $label;
+                    if ($option == $value && $label) $value = $label;
                 }
             }
         }
