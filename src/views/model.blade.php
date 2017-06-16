@@ -53,7 +53,7 @@
             @elseif ($type=='radio')
             	@foreach (explode('|',$option) as $n=>$value)
             	<?php
-                	@list($value, $label) = explode(':', $value, 2);
+                	@list($value, $label) = explode('=>', $value, 2);
                 	if (!$label) $label = str_replace('_',' ',ucfirst($value));
                 ?>
             	<input id="field_{{ $field }}_{{ $n }}" class="{{ $type }} " name="{{ $field }}" value="{{ $value }}" type="radio">
