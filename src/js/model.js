@@ -282,7 +282,7 @@ function lp_templateChange(target) {
     if (hide) {
         hide = hide.split(',');
         for (i in hide) {
-            $('#field_'+hide[i]).parent().parent().addClass('hiddenByTemplate');
+            $('#field_'+hide[i]+($('#field_'+hide[i]).length?'':'_0')).parent().parent().addClass('hiddenByTemplate');
         }
     }
 }
