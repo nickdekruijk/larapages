@@ -202,8 +202,8 @@ class LaraPagesController extends Controller
             $value = $value?$label:'';
         }
         
-        # If date only show year month and date (no more time)        
-        if (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='date' && $value) {
+        # If date only show year month and date (no more time) but only if it doesn't have a specific type setting
+        if (isset($this->model->getCasts()[$field]) && $this->model->getCasts()[$field]=='date' && $value && !isset($this->model->pagesAdmin['type'][$field])) {
             $value = $value->format('Y-m-d');
         }
         
@@ -214,7 +214,8 @@ class LaraPagesController extends Controller
             if ($type[0] == 'radio') {
                 # Show the radio button label instead of value if any labels present
                 foreach (explode('|', $type[1]) as $option) {
-                    @list($option, $label) = explode(':', $option, 2);
+//                     dd($option);
+                    @list($option, $label) = explode('=>', $option, 2);
                     if ($option == $value && $label) $value = $label;
                 }
             }
