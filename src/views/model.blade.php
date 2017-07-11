@@ -154,7 +154,7 @@
                 "searchreplace wordcount visualblocks code media visualchars", // fullscreen fullpage visualchars insertdatetime nonbreaking
                 "table paste " // save textcolor contextmenu emoticons template directionality
             ],
-            toolbar: "code visualblocks | undo redo | styleselect | bold italic | bullist numlist outdent indent | link anchor | image media | searchreplace | shy pagebreak charmap", // | alignleft aligncenter alignright alignjustify | forecolor backcolor emoticons insertfile underline visualchars
+            toolbar: "code visualblocks | undo redo | styleselect | bold italic | bullist numlist outdent indent | link anchor | image media | searchreplace | shy pagebreak charmap | table", // | alignleft aligncenter alignright alignjustify | forecolor backcolor emoticons insertfile underline visualchars
 @if (isset($model->pagesAdmin['tinymce_formats']))
             style_formats: [
 	         	{!! $model->pagesAdmin['tinymce_formats'] !!}  
