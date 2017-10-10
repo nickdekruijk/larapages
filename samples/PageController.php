@@ -26,7 +26,7 @@ class PageController extends Controller
     {
         $this->segments = Request::segments();
         # Check if first segment matches a language
-        if (Page::$languages) {
+        if (isset(Page::$languages)) {
             foreach (Page::$languages as $locale => $suffix) {
                 if (isset($this->segments[0]) && $this->segments[0] == $locale) {
                     # Found it, remove segment and set locale
