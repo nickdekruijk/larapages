@@ -33,9 +33,8 @@ After installation (if you did `php artisan vendor:publish`) a default config fi
 To get you started an example model and migration is provided in the samples folder.
 To use the Frontend template and to parse the pages add this to your `routes.php` (Laravel 5.2 and earlier) or `web.php` (Laravel 5.3 or later) if you use the Page model from our sample
 ```php
-Route::get('{any}', '\App\Page@route')->where('any', '(.*)');
+Route::get('{any}', 'PageController@route')->where('any', '(.*)');
 ```
-Feel free to copy the templates to your Laravel `resources/views/vendor/larapages/main` folder and edit them as you like. Or create your own views and set them in the config file.
 
 ### Enable Preview button while editing a model
 If you use pagesAdmin['preview'] like this:

@@ -79,7 +79,7 @@ class PageController extends Controller
         foreach($this->tree[$parent] as $n => $page) {
             $hide = $page->hidden || $hidden;
             // Set current if it's the one but only if $activeParent is true to prevent page with same slug from different parent
-            if (((empty($segments[$depth]) && $depth==0 && $n==0) || $segments[$depth] == ($this->translate?$page->trans('slug'):$page->slug)) && $activeParent) {
+            if (((empty($segments[$depth]) && $depth==0 && $n==0) || $segments[$depth] == $page->slug) && $activeParent) {
                 $this->current = $page;
                 $active = true;
             } else {
@@ -124,7 +124,7 @@ class PageController extends Controller
         if (!$this->current->view) {
             !$this->current->view = 'page';
         }
-//         if (!View::exists($this->current->view)) $this->current->view=$this->current->children()->activeSorted()->count()?'pages':'detail';
+        if (!View::exists($this->current->view)) $this->current->view=$this->current->children()->activeSorted()->count()?'pages':'detail';
 		return view($this->current->view, ['page'=>$this->current,'navigationHtml'=>$this->nav]);
     }
 }
