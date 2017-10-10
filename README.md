@@ -8,7 +8,7 @@ To install package use
 or  
 `composer require nickdekruijk/larapages:dev-master`  
   
-Add the Service Provider to the `'providers'` array in `config/app.php`  
+For Laravel 5.4 and lower add the Service Provider to the `'providers'` array in `config/app.php`
 ```php
 NickDeKruijk\LaraPages\LaraPagesServiceProvider::class,
 ```
