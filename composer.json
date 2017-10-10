@@ -21,6 +21,13 @@
         "php": ">=5.5.9",
         "laravel/framework": "^5.1"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NickDeKruijk\\LaraPages\\LaraPagesServiceProvider"
+            ]
+        }
+    },  
     "autoload": {
         "psr-4": {
             "NickDeKruijk\\LaraPages\\": "src/"
