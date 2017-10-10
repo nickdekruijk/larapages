@@ -6,6 +6,7 @@ use Request;
 use App\Http\Requests;
 use App\Page;
 use App;
+use View;
 
 class PageController extends Controller
 {
@@ -57,6 +58,14 @@ class PageController extends Controller
         }
         return $this->baseUrl;        
     }
+    
+    public static function navigation()
+    {
+        $controller = new PageController;
+        $controller->getTree();
+        $controller->walk();
+        return $controller->nav;
+    }
 
     // The walk() function is used by the route() method to parse the pages tree array
     private function walk($parent = 0, $depth = 0, $segments = false, $url = '/', $hidden = false, $activeParent = true)
@@ -70,7 +79,7 @@ class PageController extends Controller
         foreach($this->tree[$parent] as $n => $page) {
             $hide = $page->hidden || $hidden;
             // Set current if it's the one but only if $activeParent is true to prevent page with same slug from different parent
-            if (((empty($segments[$depth]) && $depth==0 && $n==0) || $segments[$depth] == $page->slug) && $activeParent) {
+            if (((empty($segments[$depth]) && $depth==0 && $n==0) || $segments[$depth] == ($this->translate?$page->trans('slug'):$page->slug)) && $activeParent) {
                 $this->current = $page;
                 $active = true;
             } else {
@@ -78,7 +87,7 @@ class PageController extends Controller
             }
 
             if (!$hide) $this->nav .= '<li' . ($active?' class="active"':''). '>';
-            if (!$hide) $this->nav .= '<a href="' . url($url . ($this->translate?$page->trans('slug'):$page->slug)) .'">' . ($this->translate?$page->trans('title'):$page->title) . ($active?' (*)':'') . '</a>';
+            if (!$hide) $this->nav .= '<a href="' . url($url . ($this->translate?$page->trans('slug'):$page->slug)) .'">' . ($this->translate?$page->trans('title'):$page->title) . '</a>';
             if (isset($this->tree[$page->id])) {
                 $this->walk($page->id, $depth+1, $segments, $url . ($this->translate?$page->trans('slug'):$page->slug) . '/', $hide, $active);
             }
@@ -86,24 +95,26 @@ class PageController extends Controller
         }
         if (!$hidden) $this->nav .= '</ul>';
     }
+    
+    private function getTree()
+    {
+        foreach(Page::where('active', 1)->orderBy('sort')->get() as $page) {
+            $this->tree[$page->parent?:0][$page->id] = $page;
+        }
+    }
 
     /**
      * Controller method for Route creation
      * In routes.php / web.php use:
      * Route::get('{any}', 'PageController@route')->where('any', '(.*)');
      */
-    public function route($any = null, Request $request)
+    public function route($any = null)
     {
         // Get all active pages, sorted, and store them in the tree array
-        foreach(Page::where('active', 1)->orderBy('sort')->get() as $page) {
-            $this->tree[$page->parent?:0][$page->id] = $page;
-        }
+        $this->getTree();
 
         // Start walking the pages tree
         $this->walk(0, 0, $this->segments(), $this->baseUrl().'/');
-
-//         echo $this->nav;
-//         dd($this->tree,$this->nav,Request::segments(),$this->current);
 
         // If current isn't set raise a 404
         if (!$this->current) {
@@ -113,6 +124,7 @@ class PageController extends Controller
         if (!$this->current->view) {
             !$this->current->view = 'page';
         }
-		return view($this->current->view, ['page'=>$this->current,'nav'=>$this->nav]);
+//         if (!View::exists($this->current->view)) $this->current->view=$this->current->children()->activeSorted()->count()?'pages':'detail';
+		return view($this->current->view, ['page'=>$this->current,'navigationHtml'=>$this->nav]);
     }
 }
