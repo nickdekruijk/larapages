@@ -100,6 +100,23 @@ class PageController extends Controller
     {
         foreach(Page::where('active', 1)->orderBy('sort')->get() as $page) {
             $this->tree[$page->parent?:0][$page->id] = $page;
+            $this->tree['parents'][$page->id] = (int)$page->parent?:0;
+            $this->tree['slugs'][$page->id] = $page->slug;
+        }
+    }
+    
+    public function url(Page $page)
+    {
+        $fullUrl = $page->slug;
+        if ($page->parent > 0) {
+            $parent = $this->tree['parents'][$page->id];
+            while($parent > 0) {
+                $fullUrl = $this->tree['slugs'][$parent] . '/' . $fullUrl;
+                $parent = $this->tree['parents'][$parent];
+            }
+            return url($fullUrl);
+        } else {
+            return $page->slug;
         }
     }
 
@@ -124,7 +141,7 @@ class PageController extends Controller
         if (!$this->current->view) {
             !$this->current->view = 'page';
         }
-        if (!View::exists($this->current->view)) $this->current->view=$this->current->children()->activeSorted()->count()?'pages':'detail';
-		return view($this->current->view, ['page'=>$this->current,'navigationHtml'=>$this->nav]);
+//         if (!View::exists($this->current->view)) $this->current->view=$this->current->children()->activeSorted()->count()?'pages':'detail';
+		return view($this->current->view, ['page'=>$this->current, 'navigationHtml'=>$this->nav, 'PageController'=>$this]);
     }
 }
