@@ -117,4 +117,18 @@ return [
 	    'page' => 'laraPages::main.page',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | css
+    |--------------------------------------------------------------------------
+    |
+    | Extra CSS files to load, you can use this to customize the look and feel
+    |
+    */
+	    
+    'css' => [
+// 	    '/vendor/larapages/css/larapages2.css',
+// 	    '/css/lp-admin-custom.css',	    
+    ],
+
 ];
