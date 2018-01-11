@@ -122,7 +122,7 @@ return [
     | css
     |--------------------------------------------------------------------------
     |
-    | Extra CSS files to load, you can use this to customize the look anf feel
+    | Extra CSS files to load, you can use this to customize the look and feel
     |
     */
 	    
