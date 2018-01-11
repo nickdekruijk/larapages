@@ -127,7 +127,7 @@ return [
     */
 	    
     'css' => [
-	    '/vendor/larapages/css/larapages2.css',
+// 	    '/vendor/larapages/css/larapages2.css',
 // 	    '/css/lp-admin-custom.css',	    
     ],
 
