@@ -8,11 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable = no">
 	<title>{{ str_replace('www.','',$_SERVER['HTTP_HOST']) }} - Admin @yield('title')</title>
 	<link href="{{asset('/vendor/larapages/css/admin.css')}}" rel="stylesheet">
-	@if (config('larapages.css'))
-	@foreach (config('larapages.css') as $css)
+@if (config('larapages.css'))
+@foreach (config('larapages.css') as $css)
 	<link href="{{$css}}" rel="stylesheet">
-	@endforeach
-	@endif
+@endforeach
+@endif
 </head>
 <body>
 @if (isset($admin))
