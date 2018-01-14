@@ -1,3 +1,6 @@
+# The future of LaraPages
+[larapages/admin](https://github.com/larapages/admin) is the next evolution of the LaraPages package in early development. New features include localisation, improved GUI design, beter authentication with user roles and it will be even easier to implement in your Laravel project. As soon as all current larapages fuctionality is ported into the new package this nickdekruijk/larapages repo won't be updated anymore.
+
 # LaraPages
 A simple CMS build on Laravel 5 (requires 5.1 or higher).
 Basically it's a webbased editor for your Laravel models. Each model must have a `$pagesAdmin` array. See the samples folder for an example. A basic media/filemanager is included too.
