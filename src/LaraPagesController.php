@@ -499,15 +499,10 @@ class LaraPagesController extends Controller
         $ids=$request->input('ids');
         # Get the row for each id and update the sort
         if ($parent<1) $parent=null;
-        $i=0;
-        foreach(explode(',',$ids) as $id) {
-            $i++;
-            $row=$model::findOrFail($id);
-            if ($row->parent!=$parent) die('Invalid parent');
-            $row->sort=$i;
-            $row->save();
+        $table = $model->getTable();
+        foreach(explode(',',$ids) as $i => $id) {
+            DB::table($table)->where('id', $id)->update(['sort' => $i]);
         }
-        #print_r($parent.'='.$ids);
     }
 
     # Remove the specified resource from storage.
