@@ -123,7 +123,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.4.2/tinymce.min.js"></script>
     <script src="{{asset('/vendor/larapages/js/nestedSortable.min.js')}}"></script>
     <script src="{{asset('/vendor/larapages/js/admin.js')}}"></script>
     <script>lp_adminpath="{{ url(config('larapages.adminpath')) }}"</script>
@@ -132,7 +132,7 @@
     <script>
         tinymce.init({
     	    selector:'.tinymce',
-    	    theme: 'modern',
+    	    theme: 'silver',
     	    menubar: false,
     	    branding: false,    	    
     	    paste_as_text: true,
